@@ -1,0 +1,179 @@
+
+e2e-mutate · 40 bugs planted · 566 tests · 22m 43s · $0.00
+
+✓ caught        The banner is missing on /controls                    a hidden twin is skipped by a visible query and reached by index › expect.toHaveCount "getByTestId(\"banner\", visible: true)"
+✓ caught        The "Click target" button does nothing on /input/bu…  should waitFor display:none to be gone › expected "Was not clicked" to be "Clicked"
+✗ got through   The first two rows swap places ("Item 1" and "Item …  scrollUntilVisible on a node pages that node and leaves the page where it was passed (+3 more tests passed)
+✓ caught        POST /cors-echo answers 500                           should use content-type from original request › Cannot read properties of undefined (reading 'content-type')
+✓ caught        POST /cors-echo says it worked but saves nothing      should use content-type from original request › Cannot read properties of undefined (reading 'content-type')
+✓ caught        The buttonId is missing on /content                   getBy coverage (role, text, test id, label, placeholder) › expect.toHaveText "frameLocator(\"iframe\") >> getByRole(\"button\")"
+✓ caught        The "download" link does nothing on /content          should report download path within page.on('download', …) handler for Files › browser.waitForDownload ""
+✗ got through   The first two rows swap places ("hi1" and "hi2") on…  should click the button behind sticky header passed (+1 more tests passed)
+✓ caught        POST /redirect answers 500                            continue should drop content-length on redirects › expected undefined to be "GET"
+✓ caught        The status message is missing on /todos               completes and filters todos › expect.toHaveText "getByRole(\"status\", name: \"Remaining\")"
+✓ caught        The "pick" button does nothing on /content            should be able to read selected file › locator.setInputFiles "locator(\"button\")"
+✓ caught        The first two rows swap places ("Ada" and "Grace") …  evaluate inspects live page state › expected ["Grace","Ada","Margaret"] to equal ["Ada","Grace","Margaret"]
+✓ caught        POST /upload answers 500                              should not trim big uploaded files › Cannot read properties of undefined (reading 'size')
+✓ caught        The status message is missing on /dashboard           authenticate as admin (setup) › expect.toContainText "getByRole(\"status\", name: \"Greeting\")"
+✓ caught        The "Click target" button does nothing on /content    should wait for button to be enabled (2 tests on this line) › browser.evaluate ""
+✓ caught        The first two rows swap places ("child 1" and "chil…  should not match scope by default › expect.toHaveText "getByRole(\"listitem\", name: \"Parent list\") >> getByRole(\"listitem\")"
+✓ caught        The status message is missing on /network             loads users from the real API › expect.toHaveText "getByRole(\"status\", name: \"Network state\")"
+✓ caught        The "80: not clicked" button does nothing on /input…  should scroll and click the button › expected "80: not clicked" to be "clicked"
+✗ got through   The first two rows swap places ("Warsaw" and "Wrocl…  types with key events where fill leaves the app cold passed
+✗ got through   The Hello is missing on /content                      getByTestId should work passed (+1 more tests passed)
+✓ caught        The "a11y" button does nothing on /content            should dispatch a click event on a button when Space gets pressed › expected false to be true
+✓ caught        The first two rows swap places ("Ticket A urgent Cl…  filters narrow a list by text or a nested match, and nth picks one row › expect.toContainText "getByRole(\"list\", name: \"Tickets\") >> getByRole(\"listitem\").nth(1)"
+✓ caught        The status message is missing on /frames/child        queries and actions scoped inside an iframe › expect.toHaveText "frameLocator(\"#editor\") >> getByRole(\"status\", name: \"Note state\")"
+✓ caught        The "click me" button does nothing on /content        should scroll into view display:contents › expected undefined to be true
+✗ got through   The first two rows swap places ("Row 1" and "Row 2"…  scrollUntilVisible on a node pages that node and leaves the page where it was passed (+3 more tests passed)
+✓ caught        The status message is missing on /speed               forty taps each cost no more than a few locator reads › expect.toHaveText "getByRole(\"status\", name: \"Count\")"
+✓ caught        The "Delete everything" button does nothing on /dia…  dismissing a confirm dialog › expect.toHaveText "getByRole(\"status\", name: \"Decision\")"
+✓ caught        The first two rows swap places ("OneDelete One" and…  reads and checks every todo at once › expect.toContainText "getByTestId(\"todo\")"
+✗ got through   The deep button is missing on /content                should support disabled fieldset passed
+✓ caught        The "foobar" link does nothing on /content            should work with clicking on anchor links › browser.waitForURL "\"/content?html=PGEgaHJlZj0nI2Zvb2Jhcic-Zm9vYmFyPC9hPg#foobar\""
+✗ got through   The He"llo is missing on /content                     getByTestId should escape id passed
+✓ caught        The "Inner" link does nothing on /content             should climb up to a anchor › browser.evaluate ""
+✓ caught        The todo is missing on /todos                         completes and filters todos › locator.check "getByLabel(\"Two\")"
+✓ caught        The "open" link does nothing on /content              should be able to download a inline PDF file via response interception › browser.waitForDownload ""
+✗ got through   The first legend element is missing on /content       should support disabled fieldset passed
+✓ caught        The "Save profile" button does nothing on /forms      validates required fields › expect.toHaveText "getByRole(\"status\", name: \"Save result\")"
+✓ caught        The status message is missing on /speed               twenty fills each cost no more than a few locator reads › expect.toHaveText "getByRole(\"status\", name: \"Echoed\")"
+✓ caught        The "0" button does nothing on /offscreenbuttons.ht…  should click offscreen buttons › expected ["button #1 clicked","button #2 clicked","button #3 clicked","button #4 clicked"…
+✓ caught        The status message is missing on /controls            a secondary tap opens the context menu › expect.toHaveText "getByRole(\"status\", name: \"File state\")"
+✓ caught        The "123321" link does nothing on /wrappedlink.html   should click wrapped links › browser.evaluate ""
+
+Catch rate: 32 of 40 (80%)
+
+By test (of the bugs that reached it):
+  100%  should scroll into view display:contents  (1 caught, 0 passed with the bug)
+  100%  should scroll into view display:contents with a child  (1 caught, 0 passed with the bug)
+    0%  should scroll into view element in iframe  (0 caught, 1 passed with the bug)
+  100%  should click the button  (1 caught, 0 passed with the bug)
+  100%  should click the button if window.Node is removed  (1 caught, 0 passed with the bug)
+  100%  should click the button after navigation  (1 caught, 0 passed with the bug)
+  100%  should click the button after a cross origin navigation  (1 caught, 0 passed with the bug)
+  100%  should click offscreen buttons  (1 caught, 0 passed with the bug)
+  100%  should waitFor display:none to be gone  (1 caught, 0 passed with the bug)
+  100%  should waitFor visibility:hidden to be gone  (1 caught, 0 passed with the bug)
+  100%  should waitFor visible when parent is hidden  (1 caught, 0 passed with the bug)
+  100%  should waitFor visible when already visible  (1 caught, 0 passed with the bug)
+  100%  should click wrapped links  (1 caught, 0 passed with the bug)
+  100%  should scroll and click the button  (1 caught, 0 passed with the bug)
+  100%  should scroll and click the button with smooth scroll behavior  (1 caught, 0 passed with the bug)
+  100%  should double click the button  (1 caught, 0 passed with the bug)
+  100%  should click the button with px border with offset  (1 caught, 0 passed with the bug)
+  100%  should click the button with em border with offset  (1 caught, 0 passed with the bug)
+  100%  should click the button inside an iframe  (1 caught, 0 passed with the bug)
+    0%  should click the button behind sticky header  (0 caught, 1 passed with the bug)
+    0%  should click the button behind position:absolute header  (0 caught, 1 passed with the bug)
+  100%  should wait for stable position  (1 caught, 0 passed with the bug)
+  100%  should wait for becoming hit target  (1 caught, 0 passed with the bug)
+  100%  should wait for button to be enabled (2 tests on this line)  (1 caught, 0 passed with the bug)
+  100%  should wait for BUTTON to be clickable when it has pointer-events:none  (1 caught, 0 passed with the bug)
+  100%  should update modifiers correctly  (1 caught, 0 passed with the bug)
+  100%  should click the button when window.innerWidth is corrupted  (1 caught, 0 passed with the bug)
+  100%  should climb dom for inner label with pointer-events:none  (1 caught, 0 passed with the bug)
+  100%  should climb up to [role=button]  (1 caught, 0 passed with the bug)
+  100%  should climb up to a anchor  (1 caught, 0 passed with the bug)
+  100%  should climb up to a [role=link]  (1 caught, 0 passed with the bug)
+   33%  a secondary tap opens the context menu  (1 caught, 2 passed with the bug)
+    0%  a long press and a double tap are told apart from a tap  (0 caught, 3 passed with the bug)
+    0%  expanded state follows the disclosure toggle  (0 caught, 3 passed with the bug)
+    0%  enabled state arrives late and every read agrees  (0 caught, 3 passed with the bug)
+    0%  check and uncheck move checked state, and one radio checks at a time  (0 caught, 3 passed with the bug)
+    0%  check and uncheck wait for a controlled checkbox and switch that commit late  (0 caught, 3 passed with the bug)
+    0%  selecting an option moves selected state onto it  (0 caught, 3 passed with the bug)
+    0%  focus moves with Tab and Shift+Tab  (0 caught, 3 passed with the bug)
+    0%  press spells modifiers the way the app sees them  (0 caught, 3 passed with the bug)
+    0%  a link reads back its attributes, accessible name, classes, and text  (0 caught, 3 passed with the bug)
+   33%  a hidden twin is skipped by a visible query and reached by index  (1 caught, 2 passed with the bug)
+   33%  filters narrow a list by text or a nested match, and nth picks one row  (1 caught, 2 passed with the bug)
+    0%  display value queries follow the value  (0 caught, 3 passed with the bug)
+    0%  several files reach a multiple file input  (0 caught, 3 passed with the bug)
+    0%  a button that opens a hidden file input takes the files  (0 caught, 3 passed with the bug)
+    0%  a button that opens no file chooser fails as ACTION_FAILED  (0 caught, 3 passed with the bug)
+    0%  a missing locator fails as LOCATOR_NOT_FOUND after its timeout  (0 caught, 3 passed with the bug)
+  100%  accepting a confirm dialog  (1 caught, 0 passed with the bug)
+  100%  dismissing a confirm dialog  (1 caught, 0 passed with the bug)
+  100%  queries and actions scoped inside an iframe  (1 caught, 0 passed with the bug)
+    0%  frame queries do not leak into the host page  (0 caught, 1 passed with the bug)
+  100%  should report downloads with acceptDownloads: true  (1 caught, 0 passed with the bug)
+  100%  should report downloads for download attribute  (1 caught, 0 passed with the bug)
+  100%  should report non-navigation downloads  (1 caught, 0 passed with the bug)
+  100%  should report download path within page.on('download', …) handler for Files  (1 caught, 0 passed with the bug)
+  100%  should report alt-click downloads  (1 caught, 0 passed with the bug)
+  100%  should report new window downloads  (1 caught, 0 passed with the bug)
+  100%  should download large binary.zip  (1 caught, 0 passed with the bug)
+  100%  should report downloads with interception  (1 caught, 0 passed with the bug)
+  100%  should emit download event from nested iframes  (1 caught, 0 passed with the bug)
+  100%  should be able to download a PDF file  (1 caught, 0 passed with the bug)
+  100%  should be able to download a inline PDF file via response interception  (1 caught, 0 passed with the bug)
+  100%  should be able to download a inline PDF file via navigation  (1 caught, 0 passed with the bug)
+  100%  should download even if there is no "attachment" value  (1 caught, 0 passed with the bug)
+  100%  should download successfully when routing  (1 caught, 0 passed with the bug)
+  100%  should work when file input is not attached to DOM  (1 caught, 0 passed with the bug)
+  100%  should accept single file  (1 caught, 0 passed with the bug)
+  100%  should be able to read selected file  (1 caught, 0 passed with the bug)
+  100%  should be able to reset selected files with empty file list  (1 caught, 0 passed with the bug)
+  100%  should emit event after navigation  (1 caught, 0 passed with the bug)
+  100%  fills, clears, and submits a profile  (1 caught, 0 passed with the bug)
+  100%  validates required fields  (1 caught, 0 passed with the bug)
+    0%  types with key events where fill leaves the app cold  (0 caught, 1 passed with the bug)
+  100%  should dispatch a click event on a button when Space gets pressed  (1 caught, 0 passed with the bug)
+  100%  should dispatch a click event on a button when Enter gets pressed  (1 caught, 0 passed with the bug)
+  100%  should work for iframe  (1 caught, 0 passed with the bug)
+    0%  should work for nested iframe  (0 caught, 1 passed with the bug)
+    0%  should work for $ and $$  (0 caught, 1 passed with the bug)
+  100%  should wait for frame 2  (1 caught, 0 passed with the bug)
+    0%  should wait for frame to go  (0 caught, 1 passed with the bug)
+    0%  waitFor should survive frame reattach  (0 caught, 1 passed with the bug)
+    0%  click should survive frame reattach  (0 caught, 1 passed with the bug)
+    0%  click should survive iframe navigation  (0 caught, 1 passed with the bug)
+  100%  getBy coverage (role, text, test id, label, placeholder)  (1 caught, 0 passed with the bug)
+    0%  observes the first navigation response  (0 caught, 1 passed with the bug)
+  100%  loads users from the real API  (1 caught, 0 passed with the bug)
+  100%  evaluate inspects live page state  (2 caught, 0 passed with the bug)
+  100%  should use content-type from original request  (2 caught, 0 passed with the bug)
+  100%  continue should drop content-length on redirects  (1 caught, 0 passed with the bug)
+  100%  continue should not change multipart/form-data body  (1 caught, 0 passed with the bug)
+    0%  scrollUntilVisible pages the viewport until a row far down renders  (0 caught, 2 passed with the bug)
+    0%  scrollUntilVisible on a node pages that node and leaves the page where it was  (0 caught, 2 passed with the bug)
+    0%  a viewport swipe and a wheel gesture both move the page  (0 caught, 2 passed with the bug)
+    0%  a node swipe scrolls only inside a scrollable node  (0 caught, 2 passed with the bug)
+    0%  getByTestId should work  (0 caught, 1 passed with the bug)
+    0%  getByTestId should escape id  (0 caught, 1 passed with the bug)
+    0%  getByTestId should work for regex  (0 caught, 1 passed with the bug)
+    0%  should support disabled fieldset  (0 caught, 2 passed with the bug)
+  100%  should not match scope by default  (1 caught, 0 passed with the bug)
+  100%  should not trim big uploaded files  (1 caught, 0 passed with the bug)
+    0%  playground renders and navigates  (0 caught, 1 passed with the bug)
+  100%  forty taps each cost no more than a few locator reads  (1 caught, 0 passed with the bug)
+   50%  twenty fills each cost no more than a few locator reads  (1 caught, 1 passed with the bug)
+   50%  adds todos with the button and the keyboard  (1 caught, 1 passed with the bug)
+    0%  ignores empty submissions  (0 caught, 1 passed with the bug)
+   67%  completes and filters todos  (2 caught, 1 passed with the bug)
+  100%  reads and checks every todo at once  (3 caught, 0 passed with the bug)
+  100%  deletes todos  (2 caught, 0 passed with the bug)
+    0%  persists across restart and clears with clearState  (0 caught, 2 passed with the bug)
+    0%  attempts start from a logically fresh session  (0 caught, 1 passed with the bug)
+  100%  should work with clicking on anchor links  (1 caught, 0 passed with the bug)
+  100%  should work with clicking on anchor links  (1 caught, 0 passed with the bug)
+  and 453 tests no scored bug reached
+
+Not planted: a "does nothing" bug on 36 clicked controls with no click listener, onclick or default action, where it would change nothing:
+  "0" button on /content
+  "1" button on /content
+  "10" button on /content
+  "11" button on /content
+  "12" button on /content
+  and 31 more (drill.json, inertControls)
+
+Left out of the drill:
+  step 1: name the workspace: serial groups are not supported yet
+  step 2: pick a plan: serial groups are not supported yet
+  step 3: confirm with state from earlier members: serial groups are not supported yet
+  should work with equal requests: failed in the baseline record run, with the recorder on
+  should be able to fetch dataURL and not fire dataURL requests: failed in the baseline record run, with the recorder on
+  skips itself when the playground has no marketplace: skipped in the baseline record run
+
+Report: .e2e-mutate/report.html
