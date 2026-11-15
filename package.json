@@ -1,0 +1,57 @@
+{
+  "name": "e2e-mutate",
+  "version": "0.1.0",
+  "description": "Plant realistic bugs in a running web app, rerun the e2e tests that touch each one, and see which bugs your tests catch.",
+  "keywords": [
+    "e2e",
+    "end-to-end testing",
+    "mutation testing",
+    "fault injection",
+    "agentic testing",
+    "self-healing tests",
+    "test quality"
+  ],
+  "author": "Tanmay Jha",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanmayOG/e2e-mutate.git"
+  },
+  "homepage": "https://github.com/TanmayOG/e2e-mutate#readme",
+  "bugs": "https://github.com/TanmayOG/e2e-mutate/issues",
+  "type": "module",
+  "bin": {
+    "e2e-mutate": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "in-page",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": "^22.22.3 || >=24.8.0"
+  },
+  "peerDependencies": {
+    "@e2e-dev/web": ">=0.16.0 <1",
+    "e2e": ">=0.23.1 <1"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "lint": "oxlint src tests in-page",
+    "check": "npm run lint && npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "jsdom": "^26.1.0",
+    "oxlint": "^1.93.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

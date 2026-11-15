@@ -1,0 +1,14 @@
+{
+  "categories": { "correctness": "error", "suspicious": "error", "perf": "error", "style": "off", "pedantic": "off" },
+  "rules": { "no-await-in-loop": "off", "oxc/no-map-spread": "off" },
+  "ignorePatterns": ["dist", "node_modules", "demo", "spike"],
+  "overrides": [
+    {
+      "files": ["in-page/*.js"],
+      "rules": {
+        "unicorn/consistent-function-scoping": "off",
+        "no-underscore-dangle": "off"
+      }
+    }
+  ]
+}
