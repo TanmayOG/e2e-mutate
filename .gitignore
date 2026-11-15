@@ -18,3 +18,4 @@ demo/video/film/.render.*
 demo/video/voice/narration.wav
 demo/video/voice/whisper.log
 .impeccable/
+.DS_Store

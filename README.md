@@ -91,7 +91,13 @@ Details: [field/e2e-testbed/README.md](field/e2e-testbed/README.md).
 
 ## Use it
 
-Add one line to your e2e config:
+Install it next to e2e, in the project that has your e2e config:
+
+```sh
+npm install -D e2e-mutate
+```
+
+Then add one line to your e2e config:
 
 ```ts
 import { web } from '@e2e-dev/web';

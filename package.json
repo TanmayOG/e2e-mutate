@@ -45,7 +45,8 @@
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
     "lint": "oxlint src tests in-page",
-    "check": "npm run lint && npm run build && npm test"
+    "check": "npm run lint && npm run build && npm test",
+    "prepublishOnly": "npm run check"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
