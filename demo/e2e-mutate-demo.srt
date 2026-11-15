@@ -1,0 +1,47 @@
+1
+00:00:00,600 --> 00:00:06,480
+Would your end-to-end tests catch a bug? I built e2e-mutate to find out.
+
+2
+00:00:06,820 --> 00:00:19,200
+e2e tests heal themselves. When the app changes, the agent finds another way to the goal. That keeps tests green through UI changes. But does it also keep them green through real bugs? Nothing measures that today.
+
+3
+00:00:19,820 --> 00:00:28,020
+Here's a small bookshop with seven e2e tests. Some use strict checks, some use vague AI checks. They're all green, and every agent step replays from cache.
+
+4
+00:00:28,920 --> 00:00:43,140
+e2e-mutate plants forty realistic bugs into the running app, one at a time: a dead button, a save that stores nothing, a wrong price. Then it reruns only the tests that touch each bug. Twenty-seven of forty were caught. Six were healed past.
+
+5
+00:00:43,680 --> 00:00:48,280
+Here's one of them. The Cart link in the nav is broken. Watch the test, at four times speed.
+
+6
+00:00:48,740 --> 00:00:54,340
+Replay taps the link. Nothing happens. The agent taps it again, then opens the cart page directly.
+
+7
+00:00:55,120 --> 00:00:59,980
+And the test passes. Users can't reach their cart from the nav, but the suite is green.
+
+8
+00:01:00,740 --> 00:01:06,120
+The report lists every bug that got through, with the screen the test saw, and a concrete check that would have caught it.
+
+9
+00:01:06,480 --> 00:01:15,440
+It found a gap in a strict check too. The order total was hidden, and toHaveText still passed, because a test-id query also matches hidden elements.
+
+10
+00:01:16,080 --> 00:01:23,400
+So I followed the report. Check that totals are visible. Check the order status. After saving, reload and check the value was stored.
+
+11
+00:01:23,920 --> 00:01:25,940
+Then I ran the same forty bugs again.
+
+12
+00:01:26,780 --> 00:01:35,500
+Sixty-eight percent caught became ninety-two. Healed past went from six to one. And it's built only on e2e's public APIs, with no change to e2e itself.

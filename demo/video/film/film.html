@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>e2e-mutate demo film</title>
+<!--
+  The demo film, one frame at a time. build.mjs loads this page in a headless
+  browser, calls window.seek(t) for every frame, and screenshots it, so every
+  animation is a pure function of time and lands on the narration's words.
+  Visual language follows e2e.com: black canvas, lowercase type, bracketed mono
+  kickers, word-by-word brightening, a blue ticker and scan lines. Fonts are the
+  SIL OFL ones e2e's own html-reporter ships (Geist, JetBrains Mono).
+-->
+<style>
+  @font-face { font-family: "Geist"; src: url("fonts/Geist-Regular.woff2") format("woff2"); }
+  @font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono-Regular.woff2") format("woff2"); }
+  :root {
+    --ink: #f7f7f7; --n200: #dfdfdf; --n300: #c8c8c8; --n400: #b1b1b1; --n500: #8d8d8d; --n600: #686868; --n700: #434343; --n800: #1c1c1c;
+    --blue: #1a5fff; --blue4: #88b0ff; --green: #25e17b; --green3: #64ff9d; --cyan: #8af9ff; --red: #ff5c5c; --amber: #ffb547;
+    --mono: "JetBrains Mono", ui-monospace, monospace; --sans: "Geist", ui-sans-serif, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  .mono { font-family: var(--mono); }
+  .abs { position: absolute; }
+
+  /* chrome that stays on screen */
+  #ticker { position: absolute; top: 0; left: 0; width: 1920px; height: 40px; background: var(--blue); overflow: hidden; z-index: 5; }
+  #ticker .track { position: absolute; top: 0; left: 0; white-space: nowrap; font: 17px/40px var(--mono); color: #000; letter-spacing: 0.01em; }
+  #header { position: absolute; top: 40px; left: 0; width: 1920px; height: 86px; padding: 0 96px; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+  #wordmark { font: 26px var(--mono); letter-spacing: -0.02em; }
+  #wordmark b { font-weight: 400; color: var(--green3); }
+  #nav { display: flex; gap: 26px; font: 17px var(--mono); color: var(--n700); }
+  #nav span { transition: none; white-space: nowrap; }
+  #chapter { font: 17px var(--mono); color: var(--n600); }
+  #footer { position: absolute; left: 0; bottom: 0; width: 1920px; height: 92px; padding: 0 96px; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+  #watermark { font: 20px var(--mono); color: var(--n500); letter-spacing: 0.02em; display: flex; align-items: center; gap: 14px; }
+  #watermark i { display: inline-block; width: 10px; height: 10px; background: var(--green3); }
+  #ticks { display: flex; gap: 6px; height: 22px; align-items: stretch; }
+  #ticks span { width: 2px; background: #2a2a2a; }
+  #ticks span.on { background: var(--blue); }
+  #scan { position: absolute; left: 0; bottom: 96px; width: 1920px; height: 460px; z-index: 0; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 30%, #000 82%, transparent 100%); }
+
+  /* scenes */
+  .scene { position: absolute; left: 96px; top: 150px; width: 1728px; height: 830px; opacity: 0; z-index: 2; }
+  .kicker { font: 21px var(--mono); color: var(--green3); letter-spacing: 0.02em; white-space: nowrap; }
+  .h1 { font-size: 136px; line-height: 1.0; letter-spacing: -0.045em; white-space: nowrap; }
+  .h2 { font-size: 84px; line-height: 1.04; letter-spacing: -0.035em; white-space: nowrap; }
+  .h3 { font-size: 60px; line-height: 1.12; letter-spacing: -0.025em; }
+  .body { font-size: 30px; line-height: 1.4; color: var(--n400); }
+  .w { color: #262626; }
+  .wipe { position: relative; display: inline-block; }
+  .wipe .txt { opacity: 0; }
+  .wipe .bar { position: absolute; left: 0; top: 8%; height: 84%; background: var(--green3); width: 0; }
+  .pill { display: inline-flex; align-items: stretch; background: #fff; color: #000; font: 30px var(--mono); }
+  .pill .cmd { padding: 18px 26px; }
+  .pill .btn { width: 72px; background: var(--blue); display: flex; align-items: center; justify-content: center; }
+  .card { border: 1px solid #262626; background: #070707; }
+  .term { font: 24px/1.62 var(--mono); color: var(--n300); padding: 30px 34px; white-space: pre; }
+  .term .ok { color: var(--green); } .term .dim { color: var(--n600); } .term .cyan { color: var(--cyan); }
+  .chip { display: inline-flex; gap: 14px; align-items: baseline; border: 1px solid #2c2c2c; padding: 14px 20px; font: 23px var(--mono); color: var(--n300); background: #050505; white-space: nowrap; }
+  .chip .num { color: var(--green3); }
+  .chip .tag { color: var(--n600); }
+  .browser { position: absolute; background: #0a0a0a; border: 1px solid #2b2b2b; border-radius: 12px; overflow: hidden; }
+  .browser .bar { height: 44px; display: flex; align-items: center; gap: 9px; padding: 0 16px; border-bottom: 1px solid #1f1f1f; background: #0d0d0d; }
+  .browser .bar i { width: 11px; height: 11px; border-radius: 50%; background: #2b2b2b; display: inline-block; }
+  .browser .url { margin-left: 14px; font: 16px var(--mono); color: var(--n500); background: #161616; padding: 5px 14px; border-radius: 6px; flex: 1; max-width: 520px; }
+  .browser .badge { margin-left: auto; font: 16px var(--mono); color: #000; background: var(--green3); padding: 4px 10px; }
+  .browser .content { position: relative; overflow: hidden; }
+  .browser .content img { display: block; width: 100%; }
+  .ring { position: absolute; border: 3px solid var(--red); border-radius: 8px; opacity: 0; }
+  .tag-red { position: absolute; font: 18px var(--mono); color: #000; background: var(--red); padding: 4px 10px; white-space: nowrap; opacity: 0; }
+  .log { font: 23px/1.5 var(--mono); color: var(--n300); }
+  .log .row { opacity: 0; padding: 12px 0; border-bottom: 1px solid #161616; }
+  .log .who { display: inline-block; min-width: 118px; color: var(--n600); }
+  .log .who.agent { color: var(--amber); } .log .who.replay { color: var(--blue4); } .log .who.check { color: var(--green3); }
+  .stamp { position: absolute; font: 120px var(--sans); letter-spacing: -0.04em; color: #000; background: var(--green3); padding: 6px 40px 14px; opacity: 0; white-space: nowrap; }
+  .sq { position: absolute; width: 56px; height: 56px; background: #141414; border: 1px solid #222; }
+  .legend { font: 20px var(--mono); color: var(--n500); display: flex; gap: 36px; }
+  .legend b { display: inline-block; width: 14px; height: 14px; margin-right: 10px; vertical-align: -1px; }
+  .big { font-size: 260px; line-height: 0.9; letter-spacing: -0.06em; }
+  .code { font: 25px/1.75 var(--mono); color: var(--n300); white-space: pre; }
+  .code .add { color: var(--green3); }
+  .code .line { position: relative; padding: 0 22px; }
+  .code .line .hl { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(100, 255, 157, 0.10); width: 0; }
+  .code .line .t { position: relative; }
+</style>
+</head>
+<body>
+<canvas id="scan" width="1920" height="460"></canvas>
+<div id="ticker"><div class="track" id="tickerTrack"></div></div>
+<div id="header">
+  <div id="wordmark">e2e<b>-</b>mutate</div>
+  <div id="nav"></div>
+  <div id="chapter"></div>
+</div>
+
+<!-- s1 · title -->
+<section class="scene" id="s1">
+  <div class="kicker abs" style="left:0;top:110px" id="s1k">[ e2e-mutate · a demo built on e2e ]</div>
+  <div class="abs h1" style="left:0;top:175px"><span class="wipe" id="s1l1"><span class="txt">would your e2e tests</span><span class="bar"></span></span></div>
+  <div class="abs h1" style="left:520px;top:315px"><span class="wipe" id="s1l2"><span class="txt">catch a bug?</span><span class="bar"></span></span></div>
+  <div class="abs" style="right:0;top:520px" id="s1pill"><div class="pill"><span class="cmd">$ npx e2e-mutate</span><span class="btn"><svg width="26" height="26" viewBox="0 0 26 26"><path d="M8 5 L20 13 L8 21 Z" fill="#fff"/></svg></span></div></div>
+</section>
+
+<!-- s2 · the problem -->
+<section class="scene" id="s2">
+  <div class="kicker abs" style="left:0;top:20px">[ the problem ]</div>
+  <div class="abs h3" style="left:0;top:90px;width:960px" id="s2text"></div>
+  <div class="abs kicker" style="left:0;top:700px;font-size:30px;opacity:0" id="s2nothing">[ nothing measures that today ]<span id="s2cursor" style="display:inline-block;width:16px;height:30px;background:var(--green3);margin-left:12px;vertical-align:-4px"></span></div>
+  <svg class="abs" style="left:1060px;top:150px" width="668" height="520" viewBox="0 0 668 520" id="s2svg">
+    <g font-family="JetBrains Mono" font-size="20">
+      <rect x="20" y="230" width="22" height="22" fill="#f7f7f7" id="s2start"/>
+      <text x="8" y="290" fill="#8d8d8d">start</text>
+      <rect x="616" y="230" width="22" height="22" fill="#f7f7f7" id="s2goalbox"/>
+      <text x="592" y="290" fill="#8d8d8d">goal</text>
+      <path id="s2direct" d="M 42 241 L 616 241" stroke="#686868" stroke-width="3" fill="none" stroke-dasharray="574" stroke-dashoffset="574"/>
+      <rect id="s2block" x="300" y="206" width="70" height="70" fill="#1c1c1c" stroke="#686868" stroke-width="2" opacity="0"/>
+      <text id="s2blocklabel" x="335" y="190" fill="#8d8d8d" text-anchor="middle" opacity="0">ui change</text>
+      <path id="s2heal" d="M 42 241 L 240 241 C 280 241 270 110 335 110 C 400 110 390 241 430 241 L 616 241" stroke="#25e17b" stroke-width="4" fill="none" stroke-dasharray="760" stroke-dashoffset="760"/>
+      <text id="s2healtag" x="335" y="92" fill="#25e17b" text-anchor="middle" opacity="0">the agent finds another way</text>
+      <g id="s2pass" opacity="0"><rect x="540" y="330" width="122" height="40" fill="#25e17b"/><text x="601" y="357" fill="#000" text-anchor="middle">passed</text></g>
+      <text id="s2q" x="662" y="410" fill="#ff5c5c" text-anchor="end" font-size="22" opacity="0">but the app is broken</text>
+    </g>
+  </svg>
+</section>
+
+<!-- s3 · the demo suite -->
+<section class="scene" id="s3">
+  <div class="kicker abs" style="left:0;top:20px">[ the demo · a bookshop with 7 e2e tests ]</div>
+  <div class="browser" id="s3browser" style="left:0;top:90px;width:840px">
+    <div class="bar"><i></i><i></i><i></i><span class="url">127.0.0.1 / bookshop</span></div>
+    <div class="content"><img id="s3img" src=".build/catalog.jpg" alt="The bookshop's catalog page"></div>
+  </div>
+  <div class="card abs" style="left:900px;top:90px;width:828px;height:540px"><div class="term" id="s3term"></div></div>
+  <div class="abs" style="left:0;top:672px;display:flex;gap:22px" id="s3chips">
+    <div class="chip" id="s3strict"><span class="num">[strict]</span><span>expect(row).toContainText('$12.50')</span></div>
+    <div class="chip" id="s3vague"><span class="num" style="color:var(--amber)">[vague]</span><span>agent.assert('the cart total is correct')</span></div>
+  </div>
+</section>
+
+<!-- s4 · the drill -->
+<section class="scene" id="s4">
+  <div class="kicker abs" style="left:0;top:20px">[ $ npx e2e-mutate ]</div>
+  <div class="abs h2" style="left:0;top:80px"><span class="wipe" id="s4l1"><span class="txt">plants 40 realistic bugs</span><span class="bar"></span></span></div>
+  <div class="abs h2" style="left:360px;top:170px"><span class="wipe" id="s4l2"><span class="txt">into the running app, one at a time</span><span class="bar"></span></span></div>
+  <div class="abs" style="left:0;top:318px;display:flex;gap:22px">
+    <div class="chip" id="s4c1"><span class="num">[001]</span><span>a dead button</span></div>
+    <div class="chip" id="s4c2"><span class="num">[002]</span><span>a save that stores nothing</span></div>
+    <div class="chip" id="s4c3"><span class="num">[003]</span><span>a wrong price</span></div>
+    <div class="chip" id="s4c4"><span class="num">[…]</span><span class="tag">9 kinds, 40 bugs</span></div>
+  </div>
+  <div class="abs" style="left:0;top:432px;width:1360px;height:124px" id="s4grid"></div>
+  <div class="abs" style="left:0;top:600px;display:flex;align-items:baseline;gap:26px" id="s4count">
+    <span class="h2" id="s4num" style="font-size:120px">0</span><span class="mono" style="font-size:30px;color:var(--n500)" id="s4of">/ 40 caught</span>
+  </div>
+  <div class="abs mono" style="left:560px;top:640px;font-size:30px;color:var(--amber);opacity:0" id="s4six"><span id="s4healed"></span> healed past <span style="color:var(--n600)">·</span> <span style="color:var(--red)"><span id="s4through"></span> got through</span></div>
+  <div class="abs legend" style="left:0;top:770px" id="s4legend"><span><b style="background:var(--green)"></b>caught</span><span><b style="background:var(--amber)"></b>healed past</span><span><b style="background:var(--red)"></b>got through</span></div>
+</section>
+
+<!-- s5-s7 · healed past -->
+<section class="scene" id="s5">
+  <div class="kicker abs" style="left:0;top:20px" id="s5k">[ healed past · 1 of 6 ]</div>
+  <div class="abs h3" style="left:0;top:90px;width:560px" id="s5text"></div>
+  <div class="abs h3" style="left:620px;top:120px;width:1100px;opacity:0" id="s7text"></div>
+  <div class="browser" id="clip" style="left:640px;top:80px;width:1088px">
+    <div class="bar"><i></i><i></i><i></i><span class="url" id="clipurl">127.0.0.1 /</span><span class="badge" id="clipspeed" style="opacity:0">4× speed</span></div>
+    <div class="content" id="clipcontent"><img id="clipimg" src=".build/clip/f0001.jpg" alt="e2e's recording of the test run">
+      <div class="ring" id="ring"></div>
+      <div class="tag-red" id="deadtag">dead link</div>
+      <div class="stamp" id="stamp">✓ passed</div>
+    </div>
+  </div>
+  <div class="abs log" style="left:0;top:250px;width:600px" id="cliplog">
+    <div class="row" id="lg1"><span class="who replay">replay</span>tap “cart (3)” → nothing</div>
+    <div class="row" id="lg2"><span class="who replay">replay</span>can't confirm → hands off</div>
+    <div class="row" id="lg3"><span class="who agent">agent</span>thinking… <span id="clipclock" style="color:var(--n500)"></span></div>
+    <div class="row" id="lg4"><span class="who agent">agent</span>tap “cart (3)” again → nothing</div>
+    <div class="row" id="lg5"><span class="who agent">agent</span>navigate → /cart</div>
+    <div class="row" id="lg6"><span class="who check">assert</span>“the cart total is correct”</div>
+  </div>
+  <div class="abs mono" style="left:620px;top:470px;font-size:26px;color:var(--n500);opacity:0" id="s7stat"></div>
+</section>
+
+<!-- s8 · the report -->
+<section class="scene" id="s8">
+  <div class="kicker abs" style="left:0;top:20px">[ the report ]</div>
+  <div class="abs h3" style="left:0;top:90px;width:540px;font-size:50px" id="s8text"></div>
+  <div class="browser" id="s8browser" style="left:600px;top:70px;width:1128px">
+    <div class="bar"><i></i><i></i><i></i><span class="url">.e2e-mutate / report.html</span></div>
+    <div class="content" id="s8content" style="height:700px"><img id="s8img" src=".build/report.jpg" alt="The e2e-mutate report" style="position:absolute;left:0;top:0">
+      <div class="abs" id="s8hl1" style="border:3px solid var(--green3);opacity:0"></div>
+      <div class="abs" id="s8hl2" style="border:3px solid var(--green3);opacity:0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- s9 · a gap in a strict check -->
+<section class="scene" id="s9">
+  <div class="kicker abs" style="left:0;top:20px">[ a gap in a strict check ]</div>
+  <div class="card abs" style="left:0;top:90px;width:780px"><div class="code" style="padding:28px 6px" id="s9code"></div></div>
+  <div class="abs" style="left:0;top:330px;opacity:0" id="s9pass"><span class="chip" style="border-color:var(--green);color:var(--green)">✓ passed</span></div>
+  <div class="browser" id="s9browser" style="left:840px;top:90px;width:888px">
+    <div class="bar"><i></i><i></i><i></i><span class="url">127.0.0.1 / order / bk-1041</span></div>
+    <div class="content"><img id="s9img" src=".build/order.png" alt="The order page with its total hidden">
+      <div class="abs" id="s9box" style="border:3px dashed var(--red);opacity:0"></div>
+      <div class="tag-red" id="s9tag">display: none</div>
+    </div>
+  </div>
+  <div class="abs h3" style="left:0;top:470px;width:780px" id="s9text"></div>
+</section>
+
+<!-- s10 · follow the report -->
+<section class="scene" id="s10">
+  <div class="kicker abs" style="left:0;top:20px">[ follow the report ]</div>
+  <div class="abs h3" style="left:0;top:90px;width:1700px" id="s10text"></div>
+  <div class="card abs" style="left:0;top:210px;width:1728px"><div class="code" style="padding:26px 6px" id="s10code"></div></div>
+</section>
+
+<!-- s11 · the same 40 bugs again -->
+<section class="scene" id="s11">
+  <div class="kicker abs" style="left:0;top:20px">[ $ npx e2e-mutate --config e2e.after.config.ts ]</div>
+  <div class="abs h2" style="left:0;top:80px"><span class="wipe" id="s11l1"><span class="txt">the same 40 bugs, again</span><span class="bar"></span></span></div>
+  <div class="abs" style="left:0;top:330px;width:1360px;height:124px" id="s11grid"></div>
+  <div class="abs" style="left:0;top:500px;display:flex;align-items:baseline;gap:26px">
+    <span class="h2" id="s11num" style="font-size:120px">0</span><span class="mono" style="font-size:30px;color:var(--n500)" id="s11of">/ 39 caught</span>
+  </div>
+</section>
+
+<!-- s12 · before → after -->
+<section class="scene" id="s12">
+  <div class="kicker abs" style="left:0;top:20px">[ before → after · the same 40 bugs ]</div>
+  <div class="abs" style="left:0;top:110px"><div class="big" id="s12a">0%</div><div class="mono" style="font-size:26px;color:var(--n500);margin-top:24px" id="s12asub"></div></div>
+  <div class="abs mono" style="left:700px;top:180px;font-size:90px;color:var(--n700);opacity:0" id="s12arrow">→</div>
+  <div class="abs" style="left:900px;top:110px;opacity:0" id="s12bwrap"><div class="big" id="s12b" style="color:var(--green3)">68%</div><div class="mono" style="font-size:26px;color:var(--n500);margin-top:24px" id="s12bsub"></div></div>
+  <div class="abs" style="left:0;top:500px;display:flex;gap:22px;opacity:0" id="s12row">
+    <div class="chip"><span class="tag">healed past</span><span style="color:var(--amber)" id="s12healed"></span></div>
+    <div class="chip"><span class="tag">got through</span><span style="color:var(--red)" id="s12through"></span></div>
+  </div>
+  <div class="abs" style="left:0;top:620px;display:flex;gap:18px" id="s12apis">
+    <div class="chip" id="s12api1">web({ initScripts })</div>
+    <div class="chip" id="s12api2">e2e list</div>
+    <div class="chip" id="s12api3">e2e run</div>
+    <div class="chip" id="s12api4">report.json</div>
+    <div class="chip" id="s12api5" style="border-color:var(--green3);color:var(--green3)">no change to e2e</div>
+  </div>
+</section>
+
+<!-- outro -->
+<section class="scene" id="s13">
+  <div class="abs kicker" style="left:0;top:190px">[ e2e-mutate ]</div>
+  <div class="abs h1" style="left:0;top:250px"><span class="wipe" id="s13l1"><span class="txt">would your tests</span><span class="bar"></span></span></div>
+  <div class="abs h1" style="left:520px;top:390px"><span class="wipe" id="s13l2"><span class="txt">catch it?</span><span class="bar"></span></span></div>
+  <div class="abs" style="left:0;top:600px;font-size:40px;letter-spacing:-0.02em;opacity:0" id="s13name">Tanmay Jha</div>
+</section>
+
+<div id="footer">
+  <div id="watermark"><i></i>Tanmay Jha</div>
+  <div id="ticks"></div>
+</div>
+
+<script src=".build/data.js"></script>
+<script>
+const F = window.FILM;
+const C = F.cues;
+const $ = (id) => document.getElementById(id);
+
+// ---------- time helpers ----------
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, d) => clamp((t - a) / d);
+const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+const easeInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const lerp = (a, b, x) => a + (b - a) * x;
+const mixColor = (c1, c2, x) => {
+  const p = (c) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
+  const [a, b] = [p(c1), p(c2)];
+  return `rgb(${a.map((v, i) => Math.round(lerp(v, b[i], x))).join(',')})`;
+};
+/** Fade and rise in at `a`, over `d` seconds. */
+function enter(el, t, a, d = 0.5, dist = 26) {
+  const x = easeOut(prog(t, a, d));
+  el.style.opacity = x;
+  el.style.transform = `translateY(${(1 - x) * dist}px)`;
+}
+/** The e2e.com reveal: a green bar sweeps across, then uncovers the text. */
+function wipe(el, t, a) {
+  const grow = easeOut(prog(t, a, 0.32));
+  const uncover = easeInOut(prog(t, a + 0.34, 0.38));
+  const bar = el.querySelector('.bar');
+  const txt = el.querySelector('.txt');
+  bar.style.left = `${uncover * 100}%`;
+  bar.style.width = `${(grow - uncover) * 100}%`;
+  txt.style.opacity = t >= a + 0.34 ? 1 : 0;
+}
+/** Word-by-word brightening, like the site's scroll reveal. */
+function words(container, list, t) {
+  const spans = container.querySelectorAll('.w');
+  const items = list.filter((w) => !w.br);
+  for (let i = 0; i < items.length; i += 1) {
+    const x = prog(t, items[i].t, 0.22);
+    spans[i].style.color = mixColor('#262626', items[i].tone || '#f7f7f7', x);
+  }
+}
+function buildWords(container, list, extraClass = '') {
+  container.innerHTML = list.map((w) => (w.br ? '<br>' : `<span class="w ${extraClass}">${w.text} </span>`)).join('');
+}
+/** A scene is visible between its cues, with a soft cross-fade. */
+function sceneAlpha(t, a, b, fin = 0.45, fout = 0.4) {
+  return Math.min(easeOut(prog(t, a, fin)), 1 - easeInOut(prog(t, b - fout, fout)));
+}
+
+// ---------- persistent chrome ----------
+const CHAPTERS = F.chapters;
+$('nav').innerHTML = CHAPTERS.map((c) => `<span>[ ${c.name} ]</span>`).join('');
+$('ticks').innerHTML = Array.from({ length: 90 }, () => '<span></span>').join('');
+const tickerText = ('e2e-mutate · plant real bugs in a running app · rerun the e2e tests that touch them · see which bugs got through · a demo by tanmay jha · ').repeat(6);
+$('tickerTrack').textContent = tickerText + tickerText;
+
+function chrome(t) {
+  const track = $('tickerTrack');
+  const half = track.scrollWidth / 2;
+  track.style.transform = `translateX(${-((t * 70) % half)}px)`;
+  let active = 0;
+  CHAPTERS.forEach((c, i) => { if (t >= c.at) active = i; });
+  [...$('nav').children].forEach((s, i) => { s.style.color = i === active ? '#f7f7f7' : '#434343'; });
+  $('chapter').textContent = `[ ${String(active + 1).padStart(2, '0')} / ${String(CHAPTERS.length).padStart(2, '0')} ]`;
+  const on = Math.round((t / F.duration) * 90);
+  [...$('ticks').children].forEach((s, i) => s.classList.toggle('on', i < on));
+  const intro = clamp(1 - prog(t, F.cues.titleEnd - 0.4, 0.8));
+  const outro = prog(t, F.cues.outro, 0.8);
+  $('header').style.opacity = clamp(prog(t, 0.05, 0.6));
+  $('footer').style.opacity = clamp(prog(t, 0.05, 0.6));
+  drawScan(t, Math.max(intro, outro));
+}
+
+// deterministic blue scan lines, after the site's hero
+const scan = $('scan').getContext('2d');
+function drawScan(t, alpha) {
+  scan.clearRect(0, 0, 1920, 460);
+  if (alpha <= 0.001) return;
+  const rows = 60;
+  for (let r = 0; r < rows; r += 1) {
+    const y = 460 - r * 7.4;
+    const fade = Math.pow(1 - r / rows, 1.4);
+    const wave = Math.sin(r * 0.17 + t * 0.55) * 260 + Math.sin(r * 0.061 - t * 0.31) * 420;
+    const len = 380 + Math.sin(r * 0.43 + t * 0.9) * 260 + (r % 5) * 40;
+    scan.fillStyle = `rgba(26, 95, 255, ${alpha * fade * 0.95})`;
+    scan.fillRect(960 + wave - len / 2, y, len, 2.4);
+    const w2 = Math.sin(r * 0.29 - t * 0.47) * 680;
+    scan.fillStyle = `rgba(26, 95, 255, ${alpha * fade * 0.5})`;
+    scan.fillRect(960 + w2, y, 120 + (r % 7) * 30, 2.4);
+    scan.fillRect(960 - w2 - 300, y + 3.6, 80 + (r % 3) * 50, 1.6);
+  }
+}
+
+// ---------- scenes ----------
+const S = (id) => $(id);
+buildWords($('s2text'), F.text.s2);
+buildWords($('s5text'), F.text.s5);
+buildWords($('s7text'), F.text.s7);
+buildWords($('s8text'), F.text.s8);
+buildWords($('s9text'), F.text.s9);
+buildWords($('s10text'), F.text.s10);
+
+// s3 terminal lines
+$('s3term').innerHTML = F.suite.map((l) => `<div class="tl" style="opacity:0">${l.html}</div>`).join('');
+$('s3img').src = F.assets.catalog;
+
+// s4/s11 grids
+function buildGrid(el, outcomes) {
+  el.innerHTML = outcomes.map((o, i) => `<div class="sq" style="left:${(i % 20) * 68}px;top:${Math.floor(i / 20) * 68}px"></div>`).join('');
+}
+buildGrid($('s4grid'), F.before.outcomes);
+buildGrid($('s11grid'), F.after.outcomes);
+const COLORS = { caught: '#25e17b', 'healed-past': '#ffb547', 'got-through': '#ff5c5c', flaky: '#686868', 'not-reached': '#434343', inconclusive: '#434343', error: '#434343' };
+function fillGrid(el, outcomes, t, a, b, pulseAt, pulseOutcome) {
+  const sqs = el.children;
+  for (let i = 0; i < outcomes.length; i += 1) {
+    const at = a + ((b - a) * i) / outcomes.length;
+    const x = prog(t, at, 0.18);
+    const col = COLORS[outcomes[i]];
+    sqs[i].style.background = x > 0 ? mixColor('#141414', col, x) : '#141414';
+    sqs[i].style.borderColor = x > 0 ? 'transparent' : '#222';
+    let s = 1 + 0.18 * Math.sin(Math.PI * clamp(x));
+    if (pulseAt !== undefined && outcomes[i] === pulseOutcome) s += 0.22 * Math.sin(Math.PI * prog(t, pulseAt, 0.5));
+    sqs[i].style.transform = `scale(${s})`;
+  }
+}
+function countUp(outcomes, t, a, b) {
+  let n = 0;
+  outcomes.forEach((o, i) => { if (o === 'caught' && t >= a + ((b - a) * i) / outcomes.length + 0.09) n += 1; });
+  return n;
+}
+
+$('s4healed').textContent = String(F.before.healed);
+$('s4through').textContent = String(F.before.through);
+$('s7stat').textContent = F.clip.stat;
+
+// s5 clip
+$('clipimg').src = F.clip.frames[0];
+const CLIP = F.clip;
+function clipFrameAt(t) {
+  const local = (t - CLIP.start) * CLIP.speed; // seconds of real recording
+  const idx = clamp(Math.floor(((t - CLIP.start) * 30)), 0, CLIP.frames.length - 1);
+  return { local, idx };
+}
+
+// s8 report
+$('s8img').src = F.assets.report;
+$('s9img').src = F.assets.order;
+$('s9code').innerHTML = F.code.s9.map((l) => `<div class="line"><span class="t">${l}</span></div>`).join('');
+$('s10code').innerHTML = F.code.s10.map((l) => `<div class="line"><span class="hl"></span><span class="t ${l.add ? 'add' : ''}">${l.text}</span></div>`).join('');
+
+async function seek(t) {
+  chrome(t);
+
+  // s1 · title
+  {
+    const el = S('s1'); const a = 0.15; const b = C.titleEnd;
+    el.style.opacity = sceneAlpha(t, a - 0.3, b, 0.3);
+    enter($('s1k'), t, a, 0.5);
+    wipe($('s1l1'), t, a + 0.25);
+    wipe($('s1l2'), t, C.catch);
+    enter($('s1pill'), t, C.built, 0.6, 30);
+  }
+
+  // s2 · the problem
+  {
+    const el = S('s2'); el.style.opacity = sceneAlpha(t, C.heal - 0.35, C.bookshop - 0.25);
+    words($('s2text'), F.text.s2, t);
+    const direct = $('s2direct');
+    direct.setAttribute('stroke-dashoffset', 574 * (1 - easeInOut(prog(t, C.heal + 0.2, 0.9))));
+    $('s2block').setAttribute('opacity', easeOut(prog(t, C.when + 0.2, 0.4)));
+    $('s2blocklabel').setAttribute('opacity', easeOut(prog(t, C.when + 0.25, 0.4)));
+    direct.setAttribute('opacity', 1 - 0.75 * prog(t, C.another, 0.4));
+    $('s2heal').setAttribute('stroke-dashoffset', 760 * (1 - easeInOut(prog(t, C.another, 1.1))));
+    $('s2healtag').setAttribute('opacity', easeOut(prog(t, C.another + 0.3, 0.4)));
+    $('s2pass').setAttribute('opacity', easeOut(prog(t, C.keeps, 0.4)));
+    const bug = prog(t, C.realBugs, 0.35);
+    $('s2block').setAttribute('fill', mixColor('#1c1c1c', '#3a0f0f', bug));
+    $('s2block').setAttribute('stroke', mixColor('#686868', '#ff5c5c', bug));
+    $('s2blocklabel').textContent = t >= C.realBugs ? 'real bug' : 'ui change';
+    $('s2blocklabel').setAttribute('fill', t >= C.realBugs ? '#ff5c5c' : '#8d8d8d');
+    $('s2q').setAttribute('opacity', easeOut(prog(t, C.realBugs + 0.4, 0.4)));
+    enter($('s2nothing'), t, C.nothing, 0.5);
+    $('s2cursor').style.opacity = Math.floor(t * 2) % 2 ? 1 : 0.15;
+  }
+
+  // s3 · the demo suite
+  {
+    const el = S('s3'); el.style.opacity = sceneAlpha(t, C.bookshop - 0.25, C.plants - 0.6);
+    enter($('s3browser'), t, C.bookshop, 0.6, 30);
+    const lines = $('s3term').children;
+    F.suite.forEach((l, i) => {
+      let at = l.at === 'seven' ? C.seven + 0.1 + i * 0.13 : l.at === 'green' ? C.allGreen : l.at === 'cache' ? C.replays : C.bookshop + 0.3;
+      enter(lines[i], t, at, 0.3, 8);
+      if (l.at === 'cache') lines[i].style.color = mixColor('#c8c8c8', '#8af9ff', prog(t, C.replays, 0.4));
+    });
+    enter($('s3strict'), t, C.strict, 0.45);
+    enter($('s3vague'), t, C.vague, 0.45);
+  }
+
+  // s4 · the drill
+  {
+    const el = S('s4'); el.style.opacity = sceneAlpha(t, C.plants - 0.6, C.hereOne - 0.3);
+    wipe($('s4l1'), t, C.plants - 0.35);
+    wipe($('s4l2'), t, C.running - 0.2);
+    enter($('s4c1'), t, C.dead, 0.4);
+    enter($('s4c2'), t, C.save, 0.4);
+    enter($('s4c3'), t, C.price, 0.4);
+    enter($('s4c4'), t, C.price + 0.6, 0.4);
+    const ga = C.reruns + 0.2; const gb = C.caught27 - 0.15;
+    $('s4grid').style.opacity = easeOut(prog(t, C.reruns - 0.1, 0.3));
+    fillGrid($('s4grid'), F.before.outcomes, t, ga, gb, C.six, 'healed-past');
+    const n = countUp(F.before.outcomes, t, ga, gb);
+    $('s4num').textContent = String(n);
+    $('s4num').style.color = t >= C.caught27 ? '#64ff9d' : '#f7f7f7';
+    enter($('s4count'), t, C.reruns, 0.4);
+    enter($('s4legend'), t, C.reruns + 0.3, 0.4);
+    enter($('s4six'), t, C.six, 0.4);
+  }
+
+  // s5-s7 · healed past
+  {
+    const el = S('s5'); el.style.opacity = sceneAlpha(t, C.hereOne - 0.3, C.report - 0.3);
+    words($('s5text'), F.text.s5, t);
+    $('s5text').style.opacity = 1 - prog(t, CLIP.start - 0.6, 0.45);
+    // the browser: enters during "here's one of them", then grows into the player
+    const grow = easeInOut(prog(t, CLIP.start - 0.7, 0.8));
+    const shrink = easeInOut(prog(t, C.users - 0.4, 0.8));
+    const small = { left: 640, top: 80, width: 1088 };
+    const large = { left: 640, top: 60, width: 1088 };
+    const side = { left: 0, top: 110, width: 560 };
+    const g = { left: lerp(small.left, large.left, grow), top: lerp(small.top, large.top, grow), width: lerp(small.width, large.width, grow) };
+    const box = { left: lerp(g.left, side.left, shrink), top: lerp(g.top, side.top, shrink), width: lerp(g.width, side.width, shrink) };
+    const clip = $('clip');
+    clip.style.left = `${box.left}px`; clip.style.top = `${box.top}px`; clip.style.width = `${box.width}px`;
+    clip.style.opacity = easeOut(prog(t, C.hereOne + 0.2, 0.5));
+    const scale = box.width / 1280;
+    const { local, idx } = clipFrameAt(t);
+    const want = F.clip.frames[t < CLIP.start ? 0 : idx];
+    if (!$('clipimg').src.endsWith(want)) { $('clipimg').src = want; await $('clipimg').decode().catch(() => {}); }
+    $('clipurl').textContent = t >= CLIP.start && local >= CLIP.events.navigate ? '127.0.0.1 / cart' : '127.0.0.1 /';
+    $('clipspeed').style.opacity = t >= C.watch && t < C.passes + 0.3 ? 1 : 0;
+    // the dead link: outlined when it's named, ringed at each tap
+    const L = CLIP.link; // in recording pixels
+    const ring = $('ring'); const dead = $('deadtag');
+    ring.style.left = `${(L.x - 10) * scale}px`; ring.style.top = `${(L.y - 8) * scale}px`;
+    ring.style.width = `${(L.w + 20) * scale}px`; ring.style.height = `${(L.h + 16) * scale}px`;
+    dead.style.left = `${(L.x - 10) * scale}px`; dead.style.top = `${(L.y + L.h + 18) * scale}px`;
+    const named = easeOut(prog(t, C.cartLink, 0.4)) * (1 - prog(t, CLIP.start - 0.2, 0.3));
+    const tap = (at) => Math.max(0, Math.sin(Math.PI * prog(t, at, 1.3)));
+    const tap1 = t >= CLIP.start ? tap(CLIP.start + CLIP.events.replayTap / CLIP.speed) : 0;
+    const tap2 = t >= CLIP.start ? tap(CLIP.start + CLIP.events.agentTap / CLIP.speed) : 0;
+    const ringA = Math.max(named, tap1, tap2) * (1 - prog(t, C.users - 0.4, 0.3));
+    ring.style.opacity = ringA;
+    ring.style.borderStyle = named > 0.01 && tap1 === 0 && tap2 === 0 ? 'dashed' : 'solid';
+    ring.style.transform = `scale(${1 + 0.12 * Math.max(tap1, tap2)})`;
+    dead.style.opacity = named;
+    // the event log, each row at its real moment
+    const at = (ev) => CLIP.start + CLIP.events[ev] / CLIP.speed;
+    const logAlpha = 1 - prog(t, C.passes + 0.6, 0.5);
+    enter($('lg1'), t, at('replayTap'), 0.35, 10);
+    enter($('lg2'), t, at('handOff'), 0.35, 10);
+    enter($('lg3'), t, at('handOff') + 0.25, 0.35, 10);
+    enter($('lg4'), t, at('agentTap'), 0.35, 10);
+    enter($('lg5'), t, at('navigate'), 0.35, 10);
+    enter($('lg6'), t, at('assert'), 0.35, 10);
+    $('cliplog').style.opacity = logAlpha * prog(t, CLIP.start, 0.3);
+    // real seconds into the run, frozen when the act step ends (the assert starts)
+    const secs = clamp(local, 0, CLIP.events.assert);
+    $('clipclock').textContent = `${Math.floor(secs)}s of real time`;
+    // the verdict, then the point
+    const st = $('stamp');
+    const sIn = easeOut(prog(t, C.passes, 0.35));
+    st.style.opacity = sIn * (1 - prog(t, C.users - 0.4, 0.4));
+    st.style.left = `${(1280 * scale) / 2 - 290}px`; st.style.top = `${(720 * scale) / 2 - 90}px`;
+    st.style.transform = `scale(${lerp(1.25, 1, sIn)}) rotate(-3deg)`;
+    $('clipimg').style.filter = `brightness(${1 - 0.45 * sIn * (1 - prog(t, C.users - 0.4, 0.4))})`;
+    words($('s7text'), F.text.s7, t);
+    $('s7text').style.opacity = prog(t, C.users - 0.2, 0.4);
+    enter($('s7stat'), t, C.suite + 0.6, 0.5);
+    $('s7stat').style.top = '330px';
+  }
+
+  // s8 · the report
+  {
+    const el = S('s8'); el.style.opacity = sceneAlpha(t, C.report - 0.3, C.gap - 0.3);
+    words($('s8text'), F.text.s8, t);
+    enter($('s8browser'), t, C.report - 0.1, 0.6, 30);
+    const R = F.report; const k = 1126 / R.width;
+    // scroll: hero first, then down to the first missed bug's card
+    const toCard = easeInOut(prog(t, C.everyBug, 1.1));
+    const y = lerp(0, R.card.y - 20, toCard);
+    $('s8img').style.width = `${R.width * k}px`;
+    $('s8img').style.transform = `translateY(${-y * k}px)`;
+    const box = (el2, b, a) => {
+      el2.style.left = `${(b.x - 8) * k}px`; el2.style.top = `${(b.y - y - 8) * k}px`;
+      el2.style.width = `${(b.w + 16) * k}px`; el2.style.height = `${(b.h + 16) * k}px`;
+      el2.style.opacity = easeOut(prog(t, a, 0.35));
+    };
+    box($('s8hl1'), R.shot, C.screen);
+    box($('s8hl2'), R.fix, C.concrete);
+  }
+
+  // s9 · a gap in a strict check
+  {
+    const el = S('s9'); el.style.opacity = sceneAlpha(t, C.gap - 0.3, C.followed - 0.3);
+    enter($('s9browser'), t, C.gap, 0.6, 30);
+    const k = 886 / 1280; const B = F.order.box;
+    const sb = $('s9box');
+    sb.style.left = `${B.x * k}px`; sb.style.top = `${B.y * k}px`; sb.style.width = `${B.w * k}px`; sb.style.height = `${B.h * k}px`;
+    sb.style.opacity = easeOut(prog(t, C.orderTotal, 0.4));
+    const tag = $('s9tag'); tag.style.left = `${(B.x + B.w + 140) * k}px`; tag.style.top = `${(B.y - 4) * k}px`;
+    tag.style.opacity = easeOut(prog(t, C.hidden, 0.4));
+    // the check is on screen as the scene opens; its toHaveText lights up when it's named
+    const lines = $('s9code').children;
+    [...lines].forEach((l, i) => enter(l, t, C.gap + 0.4 + i * 0.12, 0.4, 8));
+    const lit = easeOut(prog(t, C.toHave, 0.35));
+    lines[1].style.background = `rgba(100, 255, 157, ${0.12 * lit})`;
+    lines[1].style.color = mixColor('#c8c8c8', '#64ff9d', lit);
+    enter($('s9pass'), t, C.stillPassed, 0.4);
+    words($('s9text'), F.text.s9, t);
+  }
+
+  // s10 · follow the report
+  {
+    const el = S('s10'); el.style.opacity = sceneAlpha(t, C.followed - 0.3, C.again - 0.3);
+    words($('s10text'), F.text.s10, t);
+    const lines = $('s10code').children;
+    F.code.s10.forEach((l, i) => {
+      const a = l.at ? C[l.at] + (l.offset || 0) : C.followed + 0.2 + i * 0.05;
+      enter(lines[i], t, a, 0.35, 8);
+      if (l.add) lines[i].querySelector('.hl').style.width = `${easeOut(prog(t, a + 0.1, 0.5)) * 100}%`;
+    });
+  }
+
+  // s11 · the same 40 bugs again
+  {
+    const el = S('s11'); el.style.opacity = sceneAlpha(t, C.again - 0.3, C.p68 - 0.3);
+    wipe($('s11l1'), t, C.again);
+    const ga = C.again + 0.35; const gb = C.p68 - 0.55;
+    fillGrid($('s11grid'), F.after.outcomes, t, ga, gb);
+    $('s11num').textContent = String(countUp(F.after.outcomes, t, ga, gb));
+    $('s11num').style.color = t >= gb ? '#64ff9d' : '#f7f7f7';
+  }
+
+  // s12 · before → after
+  {
+    const el = S('s12'); el.style.opacity = sceneAlpha(t, C.p68 - 0.3, C.outro);
+    const a = Math.round(F.before.rate * easeOut(prog(t, C.p68, 0.5)));
+    $('s12a').textContent = `${a}%`;
+    $('s12asub').textContent = `${F.before.caught} of ${F.before.scored} caught`;
+    $('s12arrow').style.opacity = easeOut(prog(t, C.became - 0.1, 0.3));
+    enter($('s12bwrap'), t, C.became, 0.4);
+    const b = Math.round(lerp(F.before.rate, F.after.rate, easeOut(prog(t, C.became + 0.15, 0.7))));
+    $('s12b').textContent = `${b}%`;
+    $('s12bsub').textContent = `${F.after.caught} of ${F.after.scored} caught`;
+    enter($('s12row'), t, C.healed61, 0.45);
+    $('s12healed').textContent = `${F.before.healed} → ${F.after.healed}`;
+    $('s12through').textContent = `${F.before.through} → ${F.after.through}`;
+    ['s12api1', 's12api2', 's12api3', 's12api4'].forEach((id, i) => enter($(id), t, C.builtOnly + i * 0.32, 0.4));
+    enter($('s12api5'), t, C.noChange, 0.45);
+  }
+
+  // outro
+  {
+    const el = S('s13'); el.style.opacity = sceneAlpha(t, C.outro, F.duration + 1, 0.5);
+    wipe($('s13l1'), t, C.outro + 0.2);
+    wipe($('s13l2'), t, C.outro + 0.55);
+    enter($('s13name'), t, C.outro + 1.0, 0.6);
+  }
+}
+
+window.seek = seek;
+window.ready = Promise.all([document.fonts.ready, ...[...document.images].map((i) => i.decode().catch(() => {}))]);
+</script>
+</body>
+</html>
