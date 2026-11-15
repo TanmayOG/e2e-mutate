@@ -1,0 +1,57 @@
+
+e2e-mutate · 40 bugs planted · 7 tests · 8m 54s · $2.37
+
+✗ got through   Shows $21.25 where it showed $11.25 on /              add a book to the cart › agent.assert "the cart has the book" passed (+4 more tests passed)
+✓ caught        Says "Free" where it said "Pro" on /account           upgrade to the Pro plan › agent.act "upgrade to the Pro plan"
+✓ caught        The status message is missing on /account             save a new name on the profile › agent.assert "the profile was saved"
+✓ caught        The "Add Dune to cart" button does nothing on /       add a book to the cart › agent.act "add Dune to the cart"
+✗ got through   The first two rows swap places ("Dune" and "Neuroma…  add a book to the cart › agent.assert "the cart has the book" passed (+4 more tests passed)
+✓ caught        POST /api/plan answers 500                            upgrade to the Pro plan › agent.act "upgrade to the Pro plan"
+✗ got through   PUT /api/profile says it worked but saves nothing     save a new name on the profile › agent.assert "the profile was saved" passed
+✓ caught        GET /api/products returns inStock false for "Dune" …  add a book to the cart › agent.act "add Dune to the cart"
+✓ caught        GET /api/products leaves out "Solaris"                catalog shows each book with its price › expect.toContainText "getByRole(\"row\", name: /Solaris/)"
+✓ caught        Shows $22.50 where it showed $12.50 on /              catalog shows each book with its price › expect.toContainText "getByRole(\"row\", name: /Dune/)"
+✓ caught        Says "In stock" where it said "Out of stock" on /     catalog shows each book with its price › expect.toContainText "getByRole(\"row\", name: /Solaris/)"
+✓ caught        The status message is missing on /                    check out a cart › expect.toHaveText "getByRole(\"status\")"
+✓ caught        The "Save" button does nothing on /account            save a new name on the profile › agent.assert "the profile was saved"
+✗ got through   The first two rows swap places ("Dune" and "Neuroma…  cart total adds up › agent.assert "the cart total is correct" passed (+1 more tests passed)
+✓ caught        PUT /api/profile answers 500                          save a new name on the profile › agent.act "change my name to Ada King and save the profile"
+✓ caught        POST /api/plan says it worked but saves nothing       upgrade to the Pro plan › agent.act "upgrade to the Pro plan"
+✓ caught        GET /api/products returns price 14.5 for "Dune" ins…  catalog shows each book with its price › expect.toContainText "getByRole(\"row\", name: /Dune/)"
+✓ caught        GET /api/cart leaves out "Neuromancer"                cart total adds up › agent.act "add two copies of Dune and one copy of Neuromancer to the cart, then open the cart"
+✓ caught        Shows $24.00 where it showed $14.00 on /              catalog shows each book with its price › expect.toContainText "getByRole(\"row\", name: /Hyperion/)"
+✗ got through   Says "Out of stock" where it said "In stock" on /     add a book to the cart › agent.assert "the cart has the book" passed (+4 more tests passed)
+✗ got through   The checkout total is missing on /checkout            check out a cart passed
+✓ caught        The "Upgrade" button in the header does nothing on …  upgrade to the Pro plan › agent.act "upgrade to the Pro plan"
+✓ caught        POST /api/cart answers 500                            add a book to the cart › agent.act "add Dune to the cart"
+✓ caught        POST /api/cart says it worked but saves nothing       add a book to the cart › agent.act "add Dune to the cart"
+⚠ healed past   GET /api/cart returns price 14.5 for "Dune" instead…  cart total adds up › the agent took over "add two copies of Dune and one copy of Neuromancer to the cart, then open the cart" and the test passed
+✓ caught        Shows $27.50 where it showed $17.50 on /              catalog shows each book with its price › expect.toContainText "getByRole(\"row\", name: /Neuromancer/)"
+⚠ healed past   Says "Pending" where it said "Confirmed" on /order/…  check out a cart › the agent took over "place the order with the saved address" and the test passed
+✓ caught        The cart total is missing on /cart                    cart total adds up › agent.assert "the cart total is correct"
+✓ caught        The "Place order" button does nothing on /checkout    check out a cart › agent.act "place the order with the saved address"
+✓ caught        DELETE /api/cart/dune answers 500                     remove a book from the cart › agent.act "remove Dune from the cart"
+✓ caught        POST /api/order says it worked but saves nothing      check out a cart › agent.act "place the order with the saved address"
+⚠ healed past   GET /api/cart returns qty 2 for "Dune" instead of 1   add a book to the cart › the agent took over "add Dune to the cart" and the test passed
+✓ caught        Shows $22.50 where it showed $12.50 on /cart          cart total adds up › agent.assert "the cart total is correct"
+⚠ healed past   The order number is missing on /order/:id             check out a cart › the agent took over "place the order with the saved address" and the test passed
+✓ caught        The "Add Neuromancer to cart" button does nothing o…  cart total adds up › agent.act "add two copies of Dune and one copy of Neuromancer to the cart, then open the cart"
+✓ caught        POST /api/order answers 500                           check out a cart › agent.act "place the order with the saved address"
+⚠ healed past   GET /api/cart returns price 19.5 for "Neuromancer" …  remove a book from the cart › the agent took over "remove Dune from the cart" and the test passed
+✓ caught        Shows $27.50 where it showed $17.50 on /cart          cart total adds up › agent.assert "the cart total is correct"
+✗ got through   The order total is missing on /order/:id              check out a cart passed
+⚠ healed past   The "Cart (3)" link in the nav does nothing on /      cart total adds up › the agent took over "add two copies of Dune and one copy of Neuromancer to the cart, then open the cart" and the test passed
+
+Catch rate: 27 of 40 (68%)
+
+By test:
+   25%  add a book to the cart  (4 caught, 12 missed)
+   39%  cart total adds up  (9 caught, 14 missed)
+   60%  catalog shows each book with its price  (6 caught, 4 missed)
+   35%  check out a cart  (8 caught, 15 missed)
+   75%  save a new name on the profile  (3 caught, 1 missed)
+   29%  remove a book from the cart  (7 caught, 17 missed)
+  100%  upgrade to the Pro plan  (4 caught, 0 missed)
+Warning: A file changed outside .e2e-mutate during the drill: ?? src/relevance.ts
+
+Report: .e2e-mutate/report.html

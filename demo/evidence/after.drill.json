@@ -1,0 +1,2766 @@
+{
+  "startedAt": "2026-11-15T11:33:41.517Z",
+  "durationMs": 474237,
+  "costUsd": 1.9273876,
+  "baseline": {
+    "tests": [
+      {
+        "key": "tests-after/add-to-cart.e2e.ts:5",
+        "title": "add a book to the cart"
+      },
+      {
+        "key": "tests-after/cart-total.e2e.ts:7",
+        "title": "cart total adds up"
+      },
+      {
+        "key": "tests-after/catalog.e2e.ts:5",
+        "title": "catalog shows each book with its price"
+      },
+      {
+        "key": "tests-after/checkout.e2e.ts:7",
+        "title": "check out a cart"
+      },
+      {
+        "key": "tests-after/profile.e2e.ts:6",
+        "title": "save a new name on the profile"
+      },
+      {
+        "key": "tests-after/remove.e2e.ts:3",
+        "title": "remove a book from the cart"
+      },
+      {
+        "key": "tests-after/upgrade.e2e.ts:3",
+        "title": "upgrade to the Pro plan"
+      }
+    ],
+    "skipped": [],
+    "costUsd": 0.1966119,
+    "durationMs": 37442
+  },
+  "candidates": 51,
+  "ignored": 0,
+  "notRun": [],
+  "mutants": [
+    {
+      "mutant": {
+        "type": "wrong-number",
+        "title": "Shows $21.25 where it showed $11.25 on /",
+        "before": "$11.25",
+        "after": "$21.25",
+        "page": "/",
+        "from": "$11.25",
+        "to": "$21.25",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m01-wrong-number-11-25"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m01-wrong-number-11-25/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m01-wrong-number-11-25/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m01-wrong-number-11-25/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m01-wrong-number-11-25/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m01-wrong-number-11-25/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m01-wrong-number-11-25/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m01-wrong-number-11-25/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m01-wrong-number-11-25/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m01-wrong-number-11-25/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 7,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Solaris/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Solaris/)\nexpected: text containing \"$11.25\"\nobserved: text \"Solaris Stanisław Lem $21.25 Out of stock\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m01-wrong-number-11-25/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m01-wrong-number-11-25/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m01-wrong-number-11-25/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m01-wrong-number-11-25/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 18523,
+      "costUsd": 0.05261160000000001,
+      "runDir": "runs/m01-wrong-number-11-25",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-word",
+        "title": "Says \"Free\" where it said \"Pro\" on /account",
+        "before": "Pro",
+        "after": "Free",
+        "page": "/account",
+        "from": "Pro",
+        "to": "Free",
+        "tests": [
+          "tests-after/upgrade.e2e.ts:3"
+        ],
+        "id": "m02-wrong-word-pro"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/upgrade.e2e.ts:3",
+          "title": "upgrade to the Pro plan",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m02-wrong-word-pro/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m02-wrong-word-pro/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/video/video.webm",
+          "trace": "runs/m02-wrong-word-pro/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "upgrade to the Pro plan",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: Tapped Upgrade twice (including the replayed tap). The Plan section still shows \"Current plan: Free\"; no dialog, navigation or Pro plan appeared."
+          }
+        }
+      ],
+      "durationMs": 28024,
+      "costUsd": 0.0302923,
+      "runDir": "runs/m02-wrong-word-pro",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-element",
+        "title": "The status message is missing on /account",
+        "before": "Profile saved",
+        "after": "(not shown)",
+        "page": "/account",
+        "element": {
+          "css": "body > main:nth-of-type(1) > section:nth-of-type(1) > form:nth-of-type(1) > p:nth-of-type(2)",
+          "role": "status",
+          "text": "Profile saved"
+        },
+        "tests": [
+          "tests-after/profile.e2e.ts:6"
+        ],
+        "id": "m03-missing-element-account"
+      },
+      "outcome": "flaky",
+      "tests": [
+        {
+          "test": "tests-after/profile.e2e.ts:6",
+          "title": "save a new name on the profile",
+          "healed": [
+            {
+              "index": 1,
+              "label": "change my name to Ada King and save the profile",
+              "reason": "end-mismatch",
+              "detail": "every recorded action ran, but the recorded end state did not show on /account: missing status \"Profile saved\"",
+              "durationMs": 22768,
+              "baselineMs": 271
+            }
+          ],
+          "passedJudgments": [
+            "the profile was saved"
+          ],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m03-missing-element-account/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m03-missing-element-account/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/video/video.webm",
+          "trace": "runs/m03-missing-element-account/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/trace.md",
+          "outcome": "healed-past"
+        }
+      ],
+      "durationMs": 55139,
+      "costUsd": 0.0765053,
+      "runDir": "runs/m03-missing-element-account",
+      "confirmedBy": "caught",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "dead-control",
+        "title": "The \"Add Dune to cart\" button does nothing on /",
+        "before": "works",
+        "after": "does nothing when clicked",
+        "page": "/",
+        "element": {
+          "role": "button",
+          "name": "Add Dune to cart",
+          "region": "main"
+        },
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m04-dead-control-add-dune-to-cart"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m04-dead-control-add-dune-to-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m04-dead-control-add-dune-to-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m04-dead-control-add-dune-to-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add Dune to the cart",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: Tapped \"Add Dune to cart\" twice (once in the replay, once by me). The header still read \"Cart (0)\" and the /cart page said \"Your cart is empty.\", so Dune was not added."
+          }
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m04-dead-control-add-dune-to-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m04-dead-control-add-dune-to-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m04-dead-control-add-dune-to-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add two copies of Dune and one copy of Neuromancer to the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Only Neuromancer (qty 1) is in the cart. Tapping \"Add Dune to cart\" many times (replay plus 4 retries) never adds Dune: the cart still shows \"Cart (1)\" and total $17.50. The Dune add button appears non-functional."
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m04-dead-control-add-dune-to-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m04-dead-control-add-dune-to-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m04-dead-control-add-dune-to-cart/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Added Dune to your cart\"\nobserved: text \"\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m04-dead-control-add-dune-to-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m04-dead-control-add-dune-to-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m04-dead-control-add-dune-to-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Added Dune to your cart\"\nobserved: text \"\" (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 98131,
+      "costUsd": 0.10626839999999999,
+      "runDir": "runs/m04-dead-control-add-dune-to-cart",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "swapped-rows",
+        "title": "The first two rows swap places (\"Dune\" and \"Neuromancer\") on /",
+        "before": "Dune, then Neuromancer",
+        "after": "Neuromancer, then Dune",
+        "page": "/",
+        "element": {
+          "css": "body > main:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1)"
+        },
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m05-swapped-rows"
+      },
+      "outcome": "got-through",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m05-swapped-rows/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m05-swapped-rows/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m05-swapped-rows/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m05-swapped-rows/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m05-swapped-rows/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m05-swapped-rows/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m05-swapped-rows/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m05-swapped-rows/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m05-swapped-rows/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m05-swapped-rows/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m05-swapped-rows/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m05-swapped-rows/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 25729,
+      "costUsd": 0.1062545,
+      "runDir": "runs/m05-swapped-rows",
+      "confirmedBy": "got-through",
+      "suggestions": [
+        "If the order matters, check it: `await expect(screen.getByRole('row')).toContainText(['Dune', 'Neuromancer']);` (the list form checks the order). If it doesn't, add this bug to the ignore list."
+      ]
+    },
+    {
+      "mutant": {
+        "type": "server-error",
+        "title": "POST /api/plan answers 500",
+        "before": "200",
+        "after": "500",
+        "page": "/account",
+        "method": "POST",
+        "path": "/api/plan",
+        "tests": [
+          "tests-after/upgrade.e2e.ts:3"
+        ],
+        "id": "m06-server-error-api-plan"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/upgrade.e2e.ts:3",
+          "title": "upgrade to the Pro plan",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m06-server-error-api-plan/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m06-server-error-api-plan/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/video/video.webm",
+          "trace": "runs/m06-server-error-api-plan/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "upgrade to the Pro plan",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Tapped Upgrade twice. Both times the Plan section showed the error \"Could not change the plan. Try again later.\" and \"Current plan: …\" never changed to Pro. The upgrade did not happen."
+          }
+        }
+      ],
+      "durationMs": 29021,
+      "costUsd": 0.0306057,
+      "runDir": "runs/m06-server-error-api-plan",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "lost-write",
+        "title": "PUT /api/profile says it worked but saves nothing",
+        "before": "saved",
+        "after": "answers OK, saves nothing",
+        "page": "/account",
+        "method": "PUT",
+        "path": "/api/profile",
+        "tests": [
+          "tests-after/profile.e2e.ts:6"
+        ],
+        "id": "m07-lost-write-api-profile"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/profile.e2e.ts:6",
+          "title": "save a new name on the profile",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m07-lost-write-api-profile/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m07-lost-write-api-profile/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/video/video.webm",
+          "trace": "runs/m07-lost-write-api-profile/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 4,
+            "kind": "assertion",
+            "api": "expect.toHaveValue",
+            "label": "getByLabel(\"Name\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveValue failed\nlocator: getByLabel(\"Name\")\nexpected: value \"Ada King\"\nobserved: value \"Ada Lovelace\" (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 10759,
+      "costUsd": 0.022819799999999998,
+      "runDir": "runs/m07-lost-write-api-profile",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-api-value",
+        "title": "GET /api/products returns inStock false for \"Dune\" instead of true",
+        "before": "true",
+        "after": "false",
+        "method": "GET",
+        "path": "/api/products",
+        "jsonPath": [
+          {
+            "id": "dune"
+          },
+          "inStock"
+        ],
+        "value": false,
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m08-wrong-api-value-api-products"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m08-wrong-api-value-api-products/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m08-wrong-api-value-api-products/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m08-wrong-api-value-api-products/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add Dune to the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Dune row shows \"Out of stock\" and has no Add to cart button (its action cell is empty), so it cannot be added. Cart remains (0)."
+          }
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m08-wrong-api-value-api-products/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m08-wrong-api-value-api-products/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m08-wrong-api-value-api-products/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add two copies of Dune and one copy of Neuromancer to the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Dune is \"Out of stock\" with no Add to cart button, so two copies couldn't be added. I added one Neuromancer (cart shows 1). I didn't add a second Neuromancer because the step asked for only one."
+          }
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m08-wrong-api-value-api-products/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m08-wrong-api-value-api-products/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m08-wrong-api-value-api-products/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Dune/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Dune/)\nexpected: text containing \"In stock\"\nobserved: text \"Dune Frank Herbert $12.50 Out of stock\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m08-wrong-api-value-api-products/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m08-wrong-api-value-api-products/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m08-wrong-api-value-api-products/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "locator",
+            "api": "locator.click",
+            "label": "getByRole(\"button\", name: \"Add Dune to cart\")",
+            "code": "LOCATOR_NOT_FOUND",
+            "message": "locator matched no nodes within getByRole(\"button\", name: \"Add Dune to cart\")"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m08-wrong-api-value-api-products/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m08-wrong-api-value-api-products/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m08-wrong-api-value-api-products/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "locator",
+            "api": "locator.click",
+            "label": "getByRole(\"button\", name: \"Add Dune to cart\")",
+            "code": "LOCATOR_NOT_FOUND",
+            "message": "locator matched no nodes within getByRole(\"button\", name: \"Add Dune to cart\")"
+          }
+        }
+      ],
+      "durationMs": 115532,
+      "costUsd": 0.0531764,
+      "runDir": "runs/m08-wrong-api-value-api-products",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-api-item",
+        "title": "GET /api/products leaves out \"Solaris\"",
+        "before": "4 items",
+        "after": "3 items, totals still add up",
+        "method": "GET",
+        "path": "/api/products",
+        "jsonPath": [],
+        "itemId": "solaris",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m09-missing-api-item-solaris"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m09-missing-api-item-solaris/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m09-missing-api-item-solaris/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m09-missing-api-item-solaris/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m09-missing-api-item-solaris/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m09-missing-api-item-solaris/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m09-missing-api-item-solaris/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m09-missing-api-item-solaris/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m09-missing-api-item-solaris/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m09-missing-api-item-solaris/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 7,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Solaris/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Solaris/)\nexpected: text containing \"$11.25\"\nobserved: no node (match count 0)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m09-missing-api-item-solaris/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m09-missing-api-item-solaris/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m09-missing-api-item-solaris/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m09-missing-api-item-solaris/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 18506,
+      "costUsd": 0.0537428,
+      "runDir": "runs/m09-missing-api-item-solaris",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-number",
+        "title": "Shows $22.50 where it showed $12.50 on /",
+        "before": "$12.50",
+        "after": "$22.50",
+        "page": "/",
+        "from": "$12.50",
+        "to": "$22.50",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m10-wrong-number-12-50"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m10-wrong-number-12-50/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m10-wrong-number-12-50/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m10-wrong-number-12-50/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m10-wrong-number-12-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m10-wrong-number-12-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m10-wrong-number-12-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m10-wrong-number-12-50/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m10-wrong-number-12-50/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m10-wrong-number-12-50/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Dune/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Dune/)\nexpected: text containing \"$12.50\"\nobserved: text \"Dune Frank Herbert $22.50 In stock Add to cart\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m10-wrong-number-12-50/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m10-wrong-number-12-50/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m10-wrong-number-12-50/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m10-wrong-number-12-50/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 18055,
+      "costUsd": 0.0528149,
+      "runDir": "runs/m10-wrong-number-12-50",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-word",
+        "title": "Says \"In stock\" where it said \"Out of stock\" on /",
+        "before": "Out of stock",
+        "after": "In stock",
+        "page": "/",
+        "from": "Out of stock",
+        "to": "In stock",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m11-wrong-word-out-of-stock"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m11-wrong-word-out-of-stock/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m11-wrong-word-out-of-stock/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m11-wrong-word-out-of-stock/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m11-wrong-word-out-of-stock/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m11-wrong-word-out-of-stock/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m11-wrong-word-out-of-stock/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m11-wrong-word-out-of-stock/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m11-wrong-word-out-of-stock/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m11-wrong-word-out-of-stock/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 8,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Solaris/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Solaris/)\nexpected: text containing \"Out of stock\"\nobserved: text \"Solaris Stanisław Lem $11.25 In stock\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m11-wrong-word-out-of-stock/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m11-wrong-word-out-of-stock/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m11-wrong-word-out-of-stock/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m11-wrong-word-out-of-stock/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 18941,
+      "costUsd": 0.0532039,
+      "runDir": "runs/m11-wrong-word-out-of-stock",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-element",
+        "title": "The status message is missing on /",
+        "before": "Added Dune to your cart",
+        "after": "(not shown)",
+        "page": "/",
+        "element": {
+          "css": "body > main:nth-of-type(1) > p:nth-of-type(1)",
+          "role": "status",
+          "text": "Added Dune to your cart"
+        },
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m12-missing-element"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [
+            {
+              "index": 1,
+              "label": "add Dune to the cart",
+              "reason": "end-mismatch",
+              "detail": "every recorded action ran, but the recorded end state did not show on /: missing status \"Added Dune to your cart\"",
+              "durationMs": 18137,
+              "baselineMs": 281
+            }
+          ],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m12-missing-element/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m12-missing-element/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m12-missing-element/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "healed-past"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [
+            {
+              "index": 1,
+              "label": "add two copies of Dune and one copy of Neuromancer to the cart",
+              "reason": "end-mismatch",
+              "detail": "every recorded action ran, but the recorded end state did not show on /: missing status \"Added Neuromancer to your cart\"",
+              "durationMs": 19102,
+              "baselineMs": 598
+            }
+          ],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m12-missing-element/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m12-missing-element/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m12-missing-element/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "healed-past"
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m12-missing-element/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m12-missing-element/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m12-missing-element/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Added Dune to your cart\"\nobserved: no node (match count 0)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m12-missing-element/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m12-missing-element/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m12-missing-element/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Added Dune to your cart\"\nobserved: no node (match count 0)"
+          }
+        }
+      ],
+      "durationMs": 59771,
+      "costUsd": 0.07248740000000001,
+      "runDir": "runs/m12-missing-element",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "dead-control",
+        "title": "The \"Save\" button does nothing on /account",
+        "before": "works",
+        "after": "does nothing when clicked",
+        "page": "/account",
+        "element": {
+          "role": "button",
+          "name": "Save",
+          "region": "main"
+        },
+        "tests": [
+          "tests-after/profile.e2e.ts:6"
+        ],
+        "id": "m13-dead-control-save"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/profile.e2e.ts:6",
+          "title": "save a new name on the profile",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m13-dead-control-save/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m13-dead-control-save/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/video/video.webm",
+          "trace": "runs/m13-dead-control-save/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "agent",
+            "api": "agent.assert",
+            "label": "the profile was saved",
+            "code": "ASSERTION_INCONCLUSIVE",
+            "message": "agent.assert failed: The screen has no saved indicator, success message or other confirmation. The Name field shows \"Ada King\", but that is only the typed value. I can't tell from it whether the profile was saved."
+          }
+        }
+      ],
+      "durationMs": 30720,
+      "costUsd": 0.0414302,
+      "runDir": "runs/m13-dead-control-save",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "swapped-rows",
+        "title": "The first two rows swap places (\"Dune\" and \"Neuromancer\") on /cart",
+        "before": "Dune, then Neuromancer",
+        "after": "Neuromancer, then Dune",
+        "page": "/cart",
+        "element": {
+          "css": "body > main:nth-of-type(1) > div:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1)"
+        },
+        "tests": [
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m14-swapped-rows-cart"
+      },
+      "outcome": "got-through",
+      "tests": [
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m14-swapped-rows-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m14-swapped-rows-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m14-swapped-rows-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 5,
+          "video": "runs/m14-swapped-rows-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m14-swapped-rows-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 14074,
+      "costUsd": 0.051507399999999995,
+      "runDir": "runs/m14-swapped-rows-cart",
+      "confirmedBy": "got-through",
+      "suggestions": [
+        "If the order matters, check it: `await expect(screen.getByRole('row')).toContainText(['Dune', 'Neuromancer']);` (the list form checks the order). If it doesn't, add this bug to the ignore list."
+      ]
+    },
+    {
+      "mutant": {
+        "type": "server-error",
+        "title": "PUT /api/profile answers 500",
+        "before": "200",
+        "after": "500",
+        "page": "/account",
+        "method": "PUT",
+        "path": "/api/profile",
+        "tests": [
+          "tests-after/profile.e2e.ts:6"
+        ],
+        "id": "m15-server-error-api-profile"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/profile.e2e.ts:6",
+          "title": "save a new name on the profile",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m15-server-error-api-profile/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m15-server-error-api-profile/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/attempt-1/video/video.webm",
+          "trace": "runs/m15-server-error-api-profile/results/profile-save-a-new-name-on-the-profile-07a05650f40e0833/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "change my name to Ada King and save the profile",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Name was set to \"Ada King\" and Save was clicked twice, but the app showed the error \"Could not save your profile.\" both times. The profile was not saved."
+          }
+        }
+      ],
+      "durationMs": 25689,
+      "costUsd": 0.030350100000000005,
+      "runDir": "runs/m15-server-error-api-profile",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "lost-write",
+        "title": "POST /api/plan says it worked but saves nothing",
+        "before": "saved",
+        "after": "answers OK, saves nothing",
+        "page": "/account",
+        "method": "POST",
+        "path": "/api/plan",
+        "tests": [
+          "tests-after/upgrade.e2e.ts:3"
+        ],
+        "id": "m16-lost-write-api-plan"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/upgrade.e2e.ts:3",
+          "title": "upgrade to the Pro plan",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m16-lost-write-api-plan/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m16-lost-write-api-plan/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/video/video.webm",
+          "trace": "runs/m16-lost-write-api-plan/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "upgrade to the Pro plan",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: Tapped Upgrade twice (once by cached replay, once by me). The Plan section still shows \"Current plan: Free\", with no dialog, confirmation or other change, so the upgrade to Pro did not happen."
+          }
+        }
+      ],
+      "durationMs": 29177,
+      "costUsd": 0.032860400000000005,
+      "runDir": "runs/m16-lost-write-api-plan",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-api-value",
+        "title": "GET /api/products returns price 14.5 for \"Dune\" instead of 12.5",
+        "before": "12.5",
+        "after": "14.5",
+        "method": "GET",
+        "path": "/api/products",
+        "jsonPath": [
+          {
+            "id": "dune"
+          },
+          "price"
+        ],
+        "value": 14.5,
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m17-wrong-api-value-api-products"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m17-wrong-api-value-api-products/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m17-wrong-api-value-api-products/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m17-wrong-api-value-api-products/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m17-wrong-api-value-api-products/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m17-wrong-api-value-api-products/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m17-wrong-api-value-api-products/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m17-wrong-api-value-api-products/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m17-wrong-api-value-api-products/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m17-wrong-api-value-api-products/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Dune/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Dune/)\nexpected: text containing \"$12.50\"\nobserved: text \"Dune Frank Herbert $14.50 In stock Add to cart\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m17-wrong-api-value-api-products/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m17-wrong-api-value-api-products/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m17-wrong-api-value-api-products/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m17-wrong-api-value-api-products/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 18561,
+      "costUsd": 0.0534434,
+      "runDir": "runs/m17-wrong-api-value-api-products",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-api-item",
+        "title": "GET /api/cart leaves out \"Neuromancer\"",
+        "before": "2 items",
+        "after": "1 items, totals still add up",
+        "method": "GET",
+        "path": "/api/cart",
+        "jsonPath": [
+          "items"
+        ],
+        "itemId": "neuromancer",
+        "tests": [
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m18-missing-api-item-neuromancer"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m18-missing-api-item-neuromancer/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m18-missing-api-item-neuromancer/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m18-missing-api-item-neuromancer/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add two copies of Dune and one copy of Neuromancer to the cart",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: The cart page lists only Dune with quantity 2 and a total of $25.00. Neuromancer is missing, although the catalog showed \"Added Neuromancer to your cart\" and the header reads \"Cart (2)\"."
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 3,
+          "video": "runs/m18-missing-api-item-neuromancer/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m18-missing-api-item-neuromancer/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 24338,
+      "costUsd": 0.0321149,
+      "runDir": "runs/m18-missing-api-item-neuromancer",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-number",
+        "title": "Shows $24.00 where it showed $14.00 on /",
+        "before": "$14.00",
+        "after": "$24.00",
+        "page": "/",
+        "from": "$14.00",
+        "to": "$24.00",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m19-wrong-number-14-00"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m19-wrong-number-14-00/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m19-wrong-number-14-00/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m19-wrong-number-14-00/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m19-wrong-number-14-00/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m19-wrong-number-14-00/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m19-wrong-number-14-00/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m19-wrong-number-14-00/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m19-wrong-number-14-00/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m19-wrong-number-14-00/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 5,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Hyperion/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Hyperion/)\nexpected: text containing \"$14.00\"\nobserved: text \"Hyperion Dan Simmons $24.00 In stock Add to cart\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m19-wrong-number-14-00/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m19-wrong-number-14-00/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m19-wrong-number-14-00/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m19-wrong-number-14-00/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 19066,
+      "costUsd": 0.0530519,
+      "runDir": "runs/m19-wrong-number-14-00",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-word",
+        "title": "Says \"Out of stock\" where it said \"In stock\" on /",
+        "before": "In stock",
+        "after": "Out of stock",
+        "page": "/",
+        "from": "In stock",
+        "to": "Out of stock",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m20-wrong-word-in-stock"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m20-wrong-word-in-stock/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m20-wrong-word-in-stock/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m20-wrong-word-in-stock/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m20-wrong-word-in-stock/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m20-wrong-word-in-stock/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m20-wrong-word-in-stock/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m20-wrong-word-in-stock/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m20-wrong-word-in-stock/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m20-wrong-word-in-stock/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Dune/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Dune/)\nexpected: text containing \"In stock\"\nobserved: text \"Dune Frank Herbert $12.50 Out of stock Add to cart\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m20-wrong-word-in-stock/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m20-wrong-word-in-stock/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m20-wrong-word-in-stock/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m20-wrong-word-in-stock/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 19645,
+      "costUsd": 0.054907,
+      "runDir": "runs/m20-wrong-word-in-stock",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-element",
+        "title": "The checkout total is missing on /checkout",
+        "before": "…",
+        "after": "(not shown)",
+        "page": "/checkout",
+        "element": {
+          "testId": "checkout-total",
+          "text": "…"
+        },
+        "tests": [
+          "tests-after/checkout.e2e.ts:7"
+        ],
+        "id": "m21-missing-element-checkout-total"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 3,
+          "screenshot": "runs/m21-missing-element-checkout-total/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m21-missing-element-checkout-total/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m21-missing-element-checkout-total/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 4,
+            "kind": "assertion",
+            "api": "expect.toBeVisible",
+            "label": "getByTestId(\"checkout-total\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toBeVisible failed\nlocator: getByTestId(\"checkout-total\")\nexpected: visible\nobserved: states: hidden (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 7121,
+      "costUsd": 0,
+      "runDir": "runs/m21-missing-element-checkout-total",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "dead-control",
+        "title": "The \"Upgrade\" button in the header does nothing on /account",
+        "before": "works",
+        "after": "does nothing when clicked",
+        "page": "/account",
+        "element": {
+          "role": "button",
+          "name": "Upgrade",
+          "region": "header"
+        },
+        "tests": [
+          "tests-after/upgrade.e2e.ts:3"
+        ],
+        "id": "m22-dead-control-upgrade"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/upgrade.e2e.ts:3",
+          "title": "upgrade to the Pro plan",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m22-dead-control-upgrade/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m22-dead-control-upgrade/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/attempt-1/video/video.webm",
+          "trace": "runs/m22-dead-control-upgrade/results/upgrade-to-the-pro-plan-384d4dbd10f889d1/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "upgrade to the Pro plan",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: Upgrade was tapped (replay plus one more tap), but nothing changed. The Plan section still reads \"Current plan: …\" with no Pro plan shown, and there is no confirmation or dialog."
+          }
+        }
+      ],
+      "durationMs": 33499,
+      "costUsd": 0.0416657,
+      "runDir": "runs/m22-dead-control-upgrade",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "server-error",
+        "title": "POST /api/cart answers 500",
+        "before": "200",
+        "after": "500",
+        "page": "/",
+        "method": "POST",
+        "path": "/api/cart",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m23-server-error-api-cart"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m23-server-error-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m23-server-error-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m23-server-error-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add Dune to the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Tapped \"Add Dune to cart\" twice (once in the replay, once by me). Both times the app showed \"Could not add the book. Try again later.\" and the cart stayed at \"Cart (0)\", so Dune was not added."
+          }
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m23-server-error-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m23-server-error-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m23-server-error-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add two copies of Dune and one copy of Neuromancer to the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Adding books to the cart failed. The replayed adds and one more tap on Dune left \"Cart (0)\" unchanged. The page shows the error \"Could not add the book. Try again later.\""
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m23-server-error-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m23-server-error-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m23-server-error-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Added Dune to your cart\"\nobserved: text \"Could not add the book. Try again later.\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m23-server-error-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m23-server-error-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m23-server-error-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Added Dune to your cart\"\nobserved: text \"Could not add the book. Try again later.\" (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 66777,
+      "costUsd": 0.06767899999999999,
+      "runDir": "runs/m23-server-error-api-cart",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "lost-write",
+        "title": "POST /api/cart says it worked but saves nothing",
+        "before": "saved",
+        "after": "answers OK, saves nothing",
+        "page": "/",
+        "method": "POST",
+        "path": "/api/cart",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m24-lost-write-api-cart"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m24-lost-write-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m24-lost-write-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m24-lost-write-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toBeVisible",
+            "label": "getByRole(\"link\", name: \"Cart (1)\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toBeVisible failed\nlocator: getByRole(\"link\", name: \"Cart (1)\")\nexpected: visible\nobserved: no node (match count 0)"
+          }
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m24-lost-write-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m24-lost-write-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m24-lost-write-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add two copies of Dune and one copy of Neuromancer to the cart",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: Dune was added twice and Neuromancer once, and the page showed \"Added Neuromancer to your cart\". The header still read \"Cart (0)\", and the /cart page showed \"Your cart is empty.\""
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m24-lost-write-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m24-lost-write-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m24-lost-write-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 5,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByTestId(\"checkout-total\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByTestId(\"checkout-total\")\nexpected: text \"$12.50\"\nobserved: text \"$0.00\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m24-lost-write-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m24-lost-write-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m24-lost-write-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 6,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "remove Dune from the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Could not remove Dune: /cart shows \"Your cart is empty.\" and the nav reads \"Cart (0)\". Dune and Neuromancer were added in earlier steps, but the cart did not keep them after opening /cart. There is no Dune item or remove button to act on."
+          }
+        }
+      ],
+      "durationMs": 84166,
+      "costUsd": 0.0896694,
+      "runDir": "runs/m24-lost-write-api-cart",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-api-value",
+        "title": "GET /api/cart returns price 14.5 for \"Dune\" instead of 12.5",
+        "before": "12.5",
+        "after": "14.5",
+        "method": "GET",
+        "path": "/api/cart",
+        "jsonPath": [
+          "items",
+          {
+            "id": "dune"
+          },
+          "price"
+        ],
+        "value": 14.5,
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m25-wrong-api-value-api-cart"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m25-wrong-api-value-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m25-wrong-api-value-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m25-wrong-api-value-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m25-wrong-api-value-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m25-wrong-api-value-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m25-wrong-api-value-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 3,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Dune/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Dune/)\nexpected: text containing \"$12.50\"\nobserved: text \"Dune $14.50 2 $29.00 Remove\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m25-wrong-api-value-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m25-wrong-api-value-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m25-wrong-api-value-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 5,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByTestId(\"checkout-total\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByTestId(\"checkout-total\")\nexpected: text \"$12.50\"\nobserved: text \"$14.50\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "video": "runs/m25-wrong-api-value-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m25-wrong-api-value-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 19592,
+      "costUsd": 0.0272502,
+      "runDir": "runs/m25-wrong-api-value-api-cart",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-number",
+        "title": "Shows $27.50 where it showed $17.50 on /",
+        "before": "$17.50",
+        "after": "$27.50",
+        "page": "/",
+        "from": "$17.50",
+        "to": "$27.50",
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/catalog.e2e.ts:5",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m26-wrong-number-17-50"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [
+            "the cart has exactly 1 copy of Dune"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m26-wrong-number-17-50/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m26-wrong-number-17-50/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m26-wrong-number-17-50/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m26-wrong-number-17-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m26-wrong-number-17-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m26-wrong-number-17-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/catalog.e2e.ts:5",
+          "title": "catalog shows each book with its price",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "screenshot": "runs/m26-wrong-number-17-50/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m26-wrong-number-17-50/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/attempt-1/video/video.webm",
+          "trace": "runs/m26-wrong-number-17-50/results/catalog-shows-each-book-with-its-price-56c123e9ab39119b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 3,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Neuromancer/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Neuromancer/)\nexpected: text containing \"$17.50\"\nobserved: text \"Neuromancer William Gibson $27.50 In stock Add to cart\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m26-wrong-number-17-50/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m26-wrong-number-17-50/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 0,
+          "video": "runs/m26-wrong-number-17-50/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m26-wrong-number-17-50/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 18787,
+      "costUsd": 0.0529409,
+      "runDir": "runs/m26-wrong-number-17-50",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-word",
+        "title": "Says \"Pending\" where it said \"Confirmed\" on /order/:id",
+        "before": "Confirmed",
+        "after": "Pending",
+        "page": "/order/:id",
+        "from": "Confirmed",
+        "to": "Pending",
+        "tests": [
+          "tests-after/checkout.e2e.ts:7"
+        ],
+        "id": "m27-wrong-word-confirmed"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 6,
+          "screenshot": "runs/m27-wrong-word-confirmed/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m27-wrong-word-confirmed/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m27-wrong-word-confirmed/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 11,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Confirmed\"\nobserved: text \"Pending\" (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 26757,
+      "costUsd": 0.0232319,
+      "runDir": "runs/m27-wrong-word-confirmed",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-element",
+        "title": "The cart total is missing on /cart",
+        "before": "$42.50",
+        "after": "(not shown)",
+        "page": "/cart",
+        "element": {
+          "testId": "cart-total",
+          "text": "$42.50"
+        },
+        "tests": [
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m28-missing-element-cart-total"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m28-missing-element-cart-total/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m28-missing-element-cart-total/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m28-missing-element-cart-total/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 5,
+            "kind": "assertion",
+            "api": "expect.toBeVisible",
+            "label": "getByTestId(\"cart-total\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toBeVisible failed\nlocator: getByTestId(\"cart-total\")\nexpected: visible\nobserved: states: hidden (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [
+            {
+              "index": 6,
+              "label": "remove Dune from the cart",
+              "reason": "end-mismatch",
+              "detail": "every recorded action ran, but the recorded end state did not show on /cart: missing node \"$17.50\" and node \"Total: $17.50\"",
+              "durationMs": 18129,
+              "baselineMs": 265
+            }
+          ],
+          "passedJudgments": [],
+          "appliedAtStep": 5,
+          "video": "runs/m28-missing-element-cart-total/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m28-missing-element-cart-total/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "healed-past"
+        }
+      ],
+      "durationMs": 27594,
+      "costUsd": 0.0231792,
+      "runDir": "runs/m28-missing-element-cart-total",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "dead-control",
+        "title": "The \"Place order\" button does nothing on /checkout",
+        "before": "works",
+        "after": "does nothing when clicked",
+        "page": "/checkout",
+        "element": {
+          "role": "button",
+          "name": "Place order",
+          "region": "main"
+        },
+        "tests": [
+          "tests-after/checkout.e2e.ts:7"
+        ],
+        "id": "m29-dead-control-place-order"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 6,
+          "screenshot": "runs/m29-dead-control-place-order/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m29-dead-control-place-order/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m29-dead-control-place-order/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 6,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "place the order with the saved address",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Tapped \"Place order\" with the saved address (Ada Lovelace, 12 St James's Square) shown. This was the replay's tap plus one more tap of mine. The page stayed on /checkout with no confirmation, no navigation and no message. The cart still reads \"Cart (1)\", so there is no sign the order was placed."
+          }
+        }
+      ],
+      "durationMs": 32349,
+      "costUsd": 0.039992,
+      "runDir": "runs/m29-dead-control-place-order",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "server-error",
+        "title": "DELETE /api/cart/dune answers 500",
+        "before": "200",
+        "after": "500",
+        "page": "/cart",
+        "method": "DELETE",
+        "path": "/api/cart/dune",
+        "tests": [
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m30-server-error-api-cart-dune"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 6,
+          "screenshot": "runs/m30-server-error-api-cart-dune/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m30-server-error-api-cart-dune/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m30-server-error-api-cart-dune/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 6,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "remove Dune from the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Tapped \"Remove Dune\" twice (plus the earlier replayed tap). The cart still shows Dune and Neuromancer, Cart (2), total $30.00. The Remove button had no visible effect."
+          }
+        }
+      ],
+      "durationMs": 29910,
+      "costUsd": 0.0376494,
+      "runDir": "runs/m30-server-error-api-cart-dune",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "lost-write",
+        "title": "POST /api/order says it worked but saves nothing",
+        "before": "saved",
+        "after": "answers OK, saves nothing",
+        "page": "/checkout",
+        "method": "POST",
+        "path": "/api/order",
+        "tests": [
+          "tests-after/checkout.e2e.ts:7"
+        ],
+        "id": "m31-lost-write-api-order"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 6,
+          "screenshot": "runs/m31-lost-write-api-order/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m31-lost-write-api-order/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m31-lost-write-api-order/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 6,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "place the order with the saved address",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: After tapping \"Place order\", the app went to /order/undefined. The \"Order confirmed\" heading appeared, but the order number, status and total paid all show \"…\" placeholders. The order id is undefined, and the cart still shows \"Cart (1)\". So no real order with a valid id was created."
+          }
+        }
+      ],
+      "durationMs": 25547,
+      "costUsd": 0.033007,
+      "runDir": "runs/m31-lost-write-api-order",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-api-value",
+        "title": "GET /api/cart returns qty 2 for \"Dune\" instead of 1",
+        "before": "1",
+        "after": "2",
+        "method": "GET",
+        "path": "/api/cart",
+        "jsonPath": [
+          "items",
+          {
+            "id": "dune"
+          },
+          "qty"
+        ],
+        "value": 2,
+        "tests": [
+          "tests-after/add-to-cart.e2e.ts:5",
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/checkout.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m32-wrong-api-value-api-cart"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/add-to-cart.e2e.ts:5",
+          "title": "add a book to the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m32-wrong-api-value-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m32-wrong-api-value-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/attempt-1/video/video.webm",
+          "trace": "runs/m32-wrong-api-value-api-cart/results/add-to-cart-add-a-book-to-the-cart-29d9b633d34a4c38/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 2,
+            "kind": "assertion",
+            "api": "expect.toBeVisible",
+            "label": "getByRole(\"link\", name: \"Cart (1)\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toBeVisible failed\nlocator: getByRole(\"link\", name: \"Cart (1)\")\nexpected: visible\nobserved: no node (match count 0)"
+          }
+        },
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [
+            "the cart total is correct"
+          ],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m32-wrong-api-value-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-assert.png",
+          "video": "runs/m32-wrong-api-value-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m32-wrong-api-value-api-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "got-through"
+        },
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m32-wrong-api-value-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m32-wrong-api-value-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m32-wrong-api-value-api-cart/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 5,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByTestId(\"checkout-total\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByTestId(\"checkout-total\")\nexpected: text \"$12.50\"\nobserved: text \"$25.00\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "video": "runs/m32-wrong-api-value-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m32-wrong-api-value-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 41772,
+      "costUsd": 0.0503734,
+      "runDir": "runs/m32-wrong-api-value-api-cart",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-number",
+        "title": "Shows $22.50 where it showed $12.50 on /cart",
+        "before": "$12.50",
+        "after": "$22.50",
+        "page": "/cart",
+        "from": "$12.50",
+        "to": "$22.50",
+        "tests": [
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m33-wrong-number-12-50"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m33-wrong-number-12-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m33-wrong-number-12-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m33-wrong-number-12-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 3,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Dune/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Dune/)\nexpected: text containing \"$12.50\"\nobserved: text \"Dune $22.50 2 $25.00 Remove\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 5,
+          "video": "runs/m33-wrong-number-12-50/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m33-wrong-number-12-50/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "got-through"
+        }
+      ],
+      "durationMs": 8278,
+      "costUsd": 0,
+      "runDir": "runs/m33-wrong-number-12-50",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-element",
+        "title": "The order number is missing on /order/:id",
+        "before": "…",
+        "after": "(not shown)",
+        "page": "/order/:id",
+        "element": {
+          "testId": "order-number",
+          "text": "…"
+        },
+        "tests": [
+          "tests-after/checkout.e2e.ts:7"
+        ],
+        "id": "m34-missing-element-order-number"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 6,
+          "screenshot": "runs/m34-missing-element-order-number/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m34-missing-element-order-number/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m34-missing-element-order-number/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 7,
+            "kind": "assertion",
+            "api": "expect.toBeVisible",
+            "label": "getByTestId(\"order-number\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toBeVisible failed\nlocator: getByTestId(\"order-number\")\nexpected: visible\nobserved: states: hidden (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 27066,
+      "costUsd": 0.0231078,
+      "runDir": "runs/m34-missing-element-order-number",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "dead-control",
+        "title": "The \"Add Neuromancer to cart\" button does nothing on /",
+        "before": "works",
+        "after": "does nothing when clicked",
+        "page": "/",
+        "element": {
+          "role": "button",
+          "name": "Add Neuromancer to cart",
+          "region": "main"
+        },
+        "tests": [
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m35-dead-control-add-neuromancer-to-cart"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 1,
+          "screenshot": "runs/m35-dead-control-add-neuromancer-to-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m35-dead-control-add-neuromancer-to-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m35-dead-control-add-neuromancer-to-cart/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 1,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "add two copies of Dune and one copy of Neuromancer to the cart",
+            "code": "ACTION_FAILED",
+            "message": "agent.act failed: Dune was added twice (qty 2). Neuromancer could not be added: clicking \"Add Neuromancer to cart\" three times (once in the replay, twice by me) had no effect. The cart still shows only Dune x2, total $25.00, and the header reads Cart (2)."
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 3,
+          "screenshot": "runs/m35-dead-control-add-neuromancer-to-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m35-dead-control-add-neuromancer-to-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m35-dead-control-add-neuromancer-to-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 4,
+            "kind": "assertion",
+            "api": "expect.toHaveText",
+            "label": "getByRole(\"status\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toHaveText failed\nlocator: getByRole(\"status\")\nexpected: text \"Added Neuromancer to your cart\"\nobserved: text \"Added Dune to your cart\" (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 64904,
+      "costUsd": 0.0640186,
+      "runDir": "runs/m35-dead-control-add-neuromancer-to-cart",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "server-error",
+        "title": "POST /api/order answers 500",
+        "before": "200",
+        "after": "500",
+        "page": "/checkout",
+        "method": "POST",
+        "path": "/api/order",
+        "tests": [
+          "tests-after/checkout.e2e.ts:7"
+        ],
+        "id": "m36-server-error-api-order"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 6,
+          "screenshot": "runs/m36-server-error-api-order/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m36-server-error-api-order/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m36-server-error-api-order/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 6,
+            "kind": "agent",
+            "api": "agent.act",
+            "label": "place the order with the saved address",
+            "code": "ASSERTION_FAILED",
+            "message": "agent.act failed: Tapped Place order with the saved address (Ada Lovelace, London). The app showed the alert \"We could not place your order. You have not been charged.\" and stayed on /checkout. The order was not placed."
+          }
+        }
+      ],
+      "durationMs": 22308,
+      "costUsd": 0.024707600000000003,
+      "runDir": "runs/m36-server-error-api-order",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "wrong-api-value",
+        "title": "GET /api/cart returns price 19.5 for \"Neuromancer\" instead of 17.5",
+        "before": "17.5",
+        "after": "19.5",
+        "method": "GET",
+        "path": "/api/cart",
+        "jsonPath": [
+          "items",
+          {
+            "id": "neuromancer"
+          },
+          "price"
+        ],
+        "value": 19.5,
+        "tests": [
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m37-wrong-api-value-api-cart"
+      },
+      "outcome": "healed-past",
+      "tests": [
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [
+            {
+              "index": 6,
+              "label": "remove Dune from the cart",
+              "reason": "end-mismatch",
+              "detail": "every recorded action ran, but the recorded end state did not show on /cart: missing node \"$17.50\" and node \"Total: $17.50\"",
+              "durationMs": 17862,
+              "baselineMs": 265
+            }
+          ],
+          "passedJudgments": [],
+          "appliedAtStep": 3,
+          "video": "runs/m37-wrong-api-value-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m37-wrong-api-value-api-cart/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "healed-past",
+          "screenshot": "stills/m37-wrong-api-value-api-cart.png"
+        }
+      ],
+      "durationMs": 42790,
+      "costUsd": 0.048636900000000004,
+      "runDir": "runs/m37-wrong-api-value-api-cart",
+      "confirmedBy": "healed-past",
+      "suggestions": [
+        "The screen stayed self-consistent with a wrong price (17.5 → 19.5), so a check that only reads the screen agrees with it.",
+        "Check the exact value: `await expect(screen.getByText('$17.50')).toBeVisible();`."
+      ]
+    },
+    {
+      "mutant": {
+        "type": "wrong-number",
+        "title": "Shows $27.50 where it showed $17.50 on /cart",
+        "before": "$17.50",
+        "after": "$27.50",
+        "page": "/cart",
+        "from": "$17.50",
+        "to": "$27.50",
+        "tests": [
+          "tests-after/cart-total.e2e.ts:7",
+          "tests-after/remove.e2e.ts:3"
+        ],
+        "id": "m38-wrong-number-17-50"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m38-wrong-number-17-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m38-wrong-number-17-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m38-wrong-number-17-50/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 4,
+            "kind": "assertion",
+            "api": "expect.toContainText",
+            "label": "getByRole(\"row\", name: /Neuromancer/)",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toContainText failed\nlocator: getByRole(\"row\", name: /Neuromancer/)\nexpected: text containing \"$17.50\"\nobserved: text \"Neuromancer $27.50 1 $27.50 Remove\" (match count 1)"
+          }
+        },
+        {
+          "test": "tests-after/remove.e2e.ts:3",
+          "title": "remove a book from the cart",
+          "healed": [
+            {
+              "index": 6,
+              "label": "remove Dune from the cart",
+              "reason": "end-mismatch",
+              "detail": "every recorded action ran, but the recorded end state did not show on /cart: missing node \"$17.50\" and node \"Total: $17.50\"",
+              "durationMs": 17843,
+              "baselineMs": 265
+            }
+          ],
+          "passedJudgments": [],
+          "appliedAtStep": 5,
+          "video": "runs/m38-wrong-number-17-50/results/remove-a-book-from-the-cart-f96164767d396b14/attempt-1/video/video.webm",
+          "trace": "runs/m38-wrong-number-17-50/results/remove-a-book-from-the-cart-f96164767d396b14/trace.md",
+          "outcome": "healed-past"
+        }
+      ],
+      "durationMs": 27463,
+      "costUsd": 0.0232184,
+      "runDir": "runs/m38-wrong-number-17-50",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "missing-element",
+        "title": "The order total is missing on /order/:id",
+        "before": "…",
+        "after": "(not shown)",
+        "page": "/order/:id",
+        "element": {
+          "testId": "order-total",
+          "text": "…"
+        },
+        "tests": [
+          "tests-after/checkout.e2e.ts:7"
+        ],
+        "id": "m39-missing-element-order-total"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/checkout.e2e.ts:7",
+          "title": "check out a cart",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 6,
+          "screenshot": "runs/m39-missing-element-order-total/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m39-missing-element-order-total/results/checkout-check-out-a-cart-724b7684da85530a/attempt-1/video/video.webm",
+          "trace": "runs/m39-missing-element-order-total/results/checkout-check-out-a-cart-724b7684da85530a/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 9,
+            "kind": "assertion",
+            "api": "expect.toBeVisible",
+            "label": "getByTestId(\"order-total\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toBeVisible failed\nlocator: getByTestId(\"order-total\")\nexpected: visible\nobserved: states: hidden (match count 1)"
+          }
+        }
+      ],
+      "durationMs": 7067,
+      "costUsd": 0,
+      "runDir": "runs/m39-missing-element-order-total",
+      "suggestions": []
+    },
+    {
+      "mutant": {
+        "type": "dead-control",
+        "title": "The \"Cart (3)\" link in the nav does nothing on /",
+        "before": "works",
+        "after": "does nothing when clicked",
+        "page": "/",
+        "element": {
+          "role": "link",
+          "name": "Cart (3)",
+          "region": "nav"
+        },
+        "tests": [
+          "tests-after/cart-total.e2e.ts:7"
+        ],
+        "id": "m40-dead-control-cart-3"
+      },
+      "outcome": "caught",
+      "tests": [
+        {
+          "test": "tests-after/cart-total.e2e.ts:7",
+          "title": "cart total adds up",
+          "healed": [],
+          "passedJudgments": [],
+          "appliedAtStep": 2,
+          "screenshot": "runs/m40-dead-control-cart-3/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/screenshots/001-failure.png",
+          "video": "runs/m40-dead-control-cart-3/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/attempt-1/video/video.webm",
+          "trace": "runs/m40-dead-control-cart-3/results/cart-total-cart-total-adds-up-34d4b0e494572f5b/trace.md",
+          "outcome": "caught",
+          "failedStep": {
+            "index": 5,
+            "kind": "assertion",
+            "api": "expect.toBeVisible",
+            "label": "getByTestId(\"cart-total\")",
+            "code": "ASSERTION_FAILED",
+            "message": "expect.toBeVisible failed\nlocator: getByTestId(\"cart-total\")\nexpected: visible\nobserved: no node (match count 0)"
+          }
+        }
+      ],
+      "durationMs": 7131,
+      "costUsd": 0,
+      "runDir": "runs/m40-dead-control-cart-3",
+      "suggestions": []
+    }
+  ],
+  "caught": 36,
+  "missed": 3,
+  "catchRate": 0.9230769230769231,
+  "perTest": [
+    {
+      "key": "tests-after/add-to-cart.e2e.ts:5",
+      "title": "add a book to the cart",
+      "caught": 5,
+      "missed": 11
+    },
+    {
+      "key": "tests-after/cart-total.e2e.ts:7",
+      "title": "cart total adds up",
+      "caught": 11,
+      "missed": 12
+    },
+    {
+      "key": "tests-after/catalog.e2e.ts:5",
+      "title": "catalog shows each book with its price",
+      "caught": 9,
+      "missed": 1
+    },
+    {
+      "key": "tests-after/checkout.e2e.ts:7",
+      "title": "check out a cart",
+      "caught": 14,
+      "missed": 9
+    },
+    {
+      "key": "tests-after/profile.e2e.ts:6",
+      "title": "save a new name on the profile",
+      "caught": 3,
+      "missed": 1
+    },
+    {
+      "key": "tests-after/remove.e2e.ts:3",
+      "title": "remove a book from the cart",
+      "caught": 7,
+      "missed": 17
+    },
+    {
+      "key": "tests-after/upgrade.e2e.ts:3",
+      "title": "upgrade to the Pro plan",
+      "caught": 4,
+      "missed": 0
+    }
+  ],
+  "warnings": [
+    "A file changed outside .e2e-mutate-after during the drill: ?? demo/README.md",
+    "A file changed outside .e2e-mutate-after during the drill: ?? demo/video/make-video.mjs"
+  ]
+}
